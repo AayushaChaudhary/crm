@@ -27,6 +27,8 @@ class User extends Authenticatable
         'phoneno',
         'post',
         'bloodgroup',
+        'entry_time',
+        'exit_time',
     ];
 
     /**

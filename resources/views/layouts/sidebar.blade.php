@@ -7,6 +7,9 @@
 
         <title>{{ config('app.name', 'Laravel') }}</title>
 
+<!--jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
         <!-- Fontawesome-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
 
@@ -43,7 +46,7 @@
 
                             <li class="px-4 py-2 rounded-md hover:bg-indigo-500 hover:text-white">
                                 <a href="{{ route('department.index') }}">
-                                    <i class="fa-sharp fa-solid fa-window"></i>
+                                    <i class="fa-sharp fa-solid fa-building-user"></i>
                                     Department
                                 </a>
                             </li>
@@ -65,8 +68,15 @@
 
                                 <li class="px-4 py-2 rounded-md hover:bg-indigo-500 hover:text-white">
                                     <a href="{{ route('airline.index') }}">
-                                        <i class="pr-2 fa-solid fa-users"></i>
+                                        <i class="fa-sharp fa-solid fa-paper-plane"></i>
                                         Airlines
+                                    </a>
+                                    
+                                </li>
+                                <li class="px-4 py-2 rounded-md hover:bg-indigo-500 hover:text-white">
+                                    <a href="{{ route('attendence.index') }}">
+                                        <i class="fa-sharp fa-solid fa-clipboard-user"></i>
+                                        Attendences
                                     </a>
                                     
                                 </li>

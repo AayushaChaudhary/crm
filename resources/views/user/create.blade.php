@@ -52,6 +52,18 @@
     </div>
 
     <div>
+        <x-label for="entry_time" :value="__('entry_time')" />
+
+        <x-input id="entry_time" class="block mt-1 w-full" type="text" name="entry_time" :value="old('entry_time')" required autofocus />
+    </div>
+
+    <div>
+        <x-label for="exit_time" :value="__('exit_time')" />
+
+        <x-input id="exit_time" class="block mt-1 w-full" type="text" name="exit_time" :value="old('exit_time')" required autofocus />
+    </div>
+
+    <div>
         <x-label for="phoneno" :value="__('phoneno')" />
 
         <x-input id="phoneno" class="block mt-1 w-full" type="text" name="phoneno" :value="old('phoneno')" required autofocus />
@@ -78,6 +90,12 @@
         <x-label for="bloodgroup" :value="__('bloodgroup')" />
 
         <x-input id="bloodgroup" class="block mt-1 w-full" type="text" name="bloodgroup" :value="old('bloodgroup')" required autofocus />
+    </div>
+
+    <div>
+        <x-label for="entry_time" :value="__('entry_time')" />
+
+        <x-input id="entry_time" class="block mt-1 w-full" type="text" name="entrytime" :value="old('entry_time')" required autofocus />
     </div>
 
 

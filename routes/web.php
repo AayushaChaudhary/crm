@@ -1,9 +1,12 @@
 <?php
 
+use Carbon\Carbon;
+use App\Models\Attendence;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\AirlineController;
+use App\Http\Controllers\AttendenceController;
 use App\Http\Controllers\DepartmentController;
 
 /*
@@ -23,6 +26,10 @@ Route::get('/', function () {
 
 
 Route::get('/dashboard', function () {
+    $attendence = Attendence::whereDate('date', Carbon::today())->where('user_id', auth()->user()->id)->first();
+    if ($attendence) {
+        return view('dashboard', compact('attendence'));
+    }
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
@@ -37,5 +44,7 @@ Route::post('/department/delete', [DepartmentController::class, 'deleteDepartmen
 
 Route::resource('airline', AirlineController::class);
 Route::post('/airline/delete', [AirlineController::class, 'deleteAirline'])->name('airline.delete');
+
+Route::resource('attendence', AttendenceController::class);
 
 require __DIR__ . '/auth.php';

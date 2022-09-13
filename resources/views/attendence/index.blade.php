@@ -6,13 +6,13 @@
 @section('main')
 
     <div class="w-full">
-        <div class="text-black text-2xl font-bold py-5 px-8">Users Informations
-            <a href="{{ route('user.create') }}">
+        <div class="text-black text-2xl font-bold py-5 px-8">Attendences Informations
+            {{-- <a href="{{ route('attendence.create') }}">
                 <button class="bg-blue-500 text-white text-sm rounded-full hover:bg-blue-200 py-2 px-4 text-center float-right">
                     <i class="fas fa-plus-circle mr-2"></i>
                     Add New
                 </button>
-            </a>
+            </a> --}}
         </div> 
     </div>
     
@@ -24,106 +24,79 @@
                         Id
                     </th>
                     <th scope="col" class="py-3 px-6">
-                        Name
+                        User Id
                     </th>
                     <th scope="col" class="py-3 px-6">
-                        Email
-                    </th>
-                   
-                    <th scope="col" class="py-3 px-6">
-                        dob
+                        Clock in
                     </th>
                     <th scope="col" class="py-3 px-6">
-                        Address
+                        clock out
                     </th>
                     <th scope="col" class="py-3 px-6">
-                        Phoneno
+                        late entry
                     </th>
                     <th scope="col" class="py-3 px-6">
-                        Role
+                        Early exit
                     </th>
+
                     <th scope="col" class="py-3 px-6">
-                        Post
+                        Date
                     </th>
-                    <th scope="col" class="py-3 px-6">
-                        Bloodgroup
-                    </th>
-                    <th scope="col" class="py-3 px-6">
-                        entry Time
-                    </th>
-                    <th scope="col" class="py-3 px-6">
-                        exit Time
-                    </th>
-                    <th scope="col" class="py-3 px-6">
-                        Action
-                    </th>
+                    
                 </tr>
             </thead>
             <tbody>
-                @foreach ($user as $user )
+                @foreach ($attendence as $attendence )
                 <tr>
                     <td>
-                        {{ $user->id }}
+                        {{ $attendence->id }}
                     </td>
                
                     <td>
-                        {{ $user->name }}
+                        {{ $attendence->user_id }}
                     </td>
     
                     <td>
-                        {{ $user->email }}
+                        {{ $attendence->clock_in }}
                     </td>
 
                     <td>
-                        {{ $user->dob}}
+                        {{ $attendence->clock_out }}
+                    </td>
+                    <td>
+                        {{ $attendence->late_entry }}
+                    </td>
+                    <td>
+                        {{ $attendence->early_exit }}
+                    </td>
+                    <td>
+                        {{ $attendence->date }}
                     </td>
                 
-                    <td>
-                        {{ $user->address }}
-                    </td>
-               
-                    <td>
-                        {{ $user->phoneno }}
-                    </td>
-    
-                    <td>
-                        {{ $user->role }}
-                    </td>
-    
-                    <td>
-                        {{ $user->post }}
-                    </td>
-                    <td>
-                        {{ $user->bloodgroup }}
-                    </td>
-
-                    <td>
-                        {{ $user->entry_time }}
-                    </td>
-
-                    <td>
-                        {{ $user->exit_time }}
-                    </td>
-    
-                    <td>
+                
+                
+                
+                
+                    
+                    {{-- <td>
                         <button class="bg-blue-500 text-white font-bold py-2 px-4 rounded">
-                            <a href="{{ route('user.show',$user) }}">
+                            <a href="{{ route('airline.show',$airline) }}">
                                 Show
                             </a>
                         </button> 
                         <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">
-                            <a href="{{ route('user.edit',$user) }}">
+                            <a href="{{ route('airline.edit',$airline) }}">
                                 Edit
                             </a>
                         </button> 
     
                        
     
-                        <button onclick="show({{$user->id}})" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">
+                        <button onclick="show({{$airline->id}})" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">
                             
                                 Delete
                             </a>
-                        </button> 
+                        </button>  --}}
                     {{-- </form> --}}
                         
                     </td>
@@ -142,9 +115,9 @@
 
             <div class="flex text-center px-40 gap-5 justify-center">
                 <button class="py-2 px-4 bg-blue-400 justify-center mr-5" onclick="hide()">No</button>
-                    <form action="{{route('user.delete')}}" method="post">
+                    <form action="{{route('airline.delete')}}" method="post">
                         @csrf
-                        <input type="hidden" value="1" id="user-id" name="user-id">
+                        <input type="hidden" value="1" id="airline-id" name="airline-id">
                         <button type="submit" class="py-2 px-4 bg-blue-400 justify-center ">yes</button>
                     </form>
             </div>
@@ -172,9 +145,9 @@
     $('#myTable').DataTable();
 } );
 </script>
-<script>
+{{-- <script>
     function show($id) {
-        document.getElementById('user-id').value = $id;
+        document.getElementById('airline-id').value = $id;
         $('.deleteModal').removeClass('hidden');
 
     }
@@ -182,11 +155,11 @@
         $('.deleteModal').addClass('hidden');
     }
 
-    function deleteUser() {
-        $id = document.getElementById('user-id').value; 
+    function deleteAirline() {
+        $id = document.getElementById('airline-id').value; 
         hide();
 
     }
     
-</script>
+</script> --}}
 @endsection

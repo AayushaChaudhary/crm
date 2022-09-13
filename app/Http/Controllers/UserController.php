@@ -47,6 +47,8 @@ class UserController extends Controller
             'role' => ['required', Rule::in(User::CRUD_ROLES)],
             'post' => ['required'],
             'bloodgroup' => ['required'],
+            'entry_time' => ['required'],
+            'exit_time' => ['required',]
 
         ]);
 
@@ -60,6 +62,8 @@ class UserController extends Controller
             'role' => $request->role,
             'post' => $request->post,
             'bloodgroup' => $request->bloodgroup,
+            'entry_time' => $request->entry_time,
+            'exit_time' => $request->exit_time,
         ]);
 
         return redirect()->route('user.index')

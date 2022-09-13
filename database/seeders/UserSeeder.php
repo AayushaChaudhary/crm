@@ -25,6 +25,8 @@ class UserSeeder extends Seeder
             'phoneno' => '98665456',
             'post' => 'Manager',
             'bloodgroup' => 'A+',
+            'entry_time' => '11:00:00',
+            'exit_time' => '15:00:00',
         ]);
     }
 }

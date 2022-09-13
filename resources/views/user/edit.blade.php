@@ -49,6 +49,18 @@
     </div>
 
     <div>
+        <x-label for="entry_time" :value="__('entry_time')" />
+        <input type="text" name="entry_time" id="entry_time" value= "{{ $user->entry_time }}" class="w-full rounded-md">
+    </div>
+
+    <div>
+        <x-label for="exit_time" :value="__('exit_time')" />
+        <input type="text" name="exit_time" id="exit_time" value= "{{ $user->exit_time }}" class="w-full rounded-md">
+    </div>
+
+
+
+    <div>
         <x-label for="phoneno" :value="__('phoneno')" />
         <input type="text" name="phoneno" id="phoneno" value= "{{ $user->phoneno }}" class="w-full rounded-md">
     </div>
