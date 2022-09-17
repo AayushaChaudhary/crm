@@ -1,5 +1,6 @@
 @extends('layouts.sidebar')
 @section('main')
+<x-alert />
 <div class="w-full">
     <div class="text-black font-bold py-3 px-5">Add New airlines
         <a href="{{ route('airline.index') }}">

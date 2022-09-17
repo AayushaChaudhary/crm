@@ -12,5 +12,19 @@ class Leave extends Model
     protected $fillable = [
         'date',
         'subject',
+        'image',
+        'status',
+        'user_id',
+        'remarks',
+
     ];
+
+    public function media()
+    {
+        return $this->belongsTo(Media::class);
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

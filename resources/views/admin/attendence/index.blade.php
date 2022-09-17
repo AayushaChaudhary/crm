@@ -4,32 +4,36 @@
 @endsection
 
 @section('main')
-<x-alert />
-<div class="shadow-lg">
+
     <div class="w-full">
-        <div class="text-black text-xl font-bold py-5 px-8">Airlines Informations
-            <a href="{{ route('airline.create') }}">
+        <div class="text-black text-2xl font-bold py-5 px-8">Attendences Informations
+            {{-- <a href="{{ route('attendence.create') }}">
                 <button class="bg-blue-500 text-white text-sm rounded-full hover:bg-blue-200 py-2 px-4 text-center float-right">
                     <i class="fas fa-plus-circle mr-2"></i>
                     Add New
                 </button>
-            </a>
+            </a> --}}
         </div> 
     </div>
     
     <div class="overflow-x-auto relative w-100%">
-        <table class="w-full m-6 shadow-lg text-sm text-left text-gray-500 dark:text-gray-400" id="myTable">
+        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400" id="myTable">
             <thead class="text-xs text-gray-700 uppercase bg-blue-500 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                     <th scope="col" class="py-3 px-6">
-                        Id
+                        Name
                     </th>
                     <th scope="col" class="py-3 px-6">
-                        Title
+                        Address
                     </th>
                     <th scope="col" class="py-3 px-6">
-                        Type
+                        Phone Number
                     </th>
+                    <th scope="col" class="py-3 px-6">
+                        Role
+                    </th>
+                    
+
                     <th scope="col" class="py-3 px-6">
                         Action
                     </th>
@@ -37,28 +41,34 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($airline as $airline )
+                @foreach ($user as $user )
                 <tr>
                     <td>
-                        {{ $airline->id }}
+                        {{ $user->name }}
                     </td>
                
                     <td>
-                        {{ $airline->title }}
+                        {{ $user->address}}
                     </td>
     
                     <td>
-                        {{ $airline->type }}
+                        {{ $user->phoneno }}
                     </td>
+
+                    <td>
+                        {{ $user->role }}
+                    </td>
+                   
                 
-                    
+                
                     <td>
                         <button class="bg-blue-500 text-white font-bold py-2 px-4 rounded">
-                            <a href="{{ route('airline.show',$airline) }}">
+                            <a href="{{ route('admin.attendence.show',$user->id) }}">
                                 Show
                             </a>
                         </button> 
-                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">
+                        
+                        {{-- <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">
                             <a href="{{ route('airline.edit',$airline) }}">
                                 Edit
                             </a>
@@ -70,7 +80,7 @@
                             
                                 Delete
                             </a>
-                        </button> 
+                        </button>  --}}
                     {{-- </form> --}}
                         
                     </td>
@@ -80,7 +90,7 @@
         </table>
 
          <!-- Delete -->
-<div class="hidden deleteModal backdrop-blur-lg fixed top-0 left-0 right-0 bottom-0 p-2 bg-gray-800 bg-opacity-25 border-red-100 rounded-md shadow-xl w-full flex-center">
+{{-- <div class="hidden deleteModal backdrop-blur-lg fixed top-0 left-0 right-0 bottom-0 p-2 bg-gray-800 bg-opacity-25 border-red-100 rounded-md shadow-xl w-full flex-center">
     <div class="flex justify-center">
         <div class="bg-white shadow-lg rounded-md w-96 h-96 mt-[10%]">
             <div class="text-center text-black text-xl py-10 px-10 mt-2">
@@ -101,9 +111,7 @@
     
         
     </div>
-</div>
-</div>
-
+</div> --}}
 </div>
 
 
@@ -121,7 +129,7 @@
     $('#myTable').DataTable();
 } );
 </script>
-<script>
+{{-- <script>
     function show($id) {
         document.getElementById('airline-id').value = $id;
         $('.deleteModal').removeClass('hidden');
@@ -137,5 +145,5 @@
 
     }
     
-</script>
+</script> --}}
 @endsection

@@ -35,7 +35,7 @@
                     </div>
 
                     <div class="px-6 py-2 mx-2">
-                        <ul class="text-xl antialiased font-bold text-gray-500 text-md ">
+                        <ul class=" antialiased font-bold text-gray-500 text-md ">
                             <li class="px-4 py-2 rounded-md hover:bg-indigo-500 hover:text-white">
                                 <a href="{{ route('dashboard') }}">
                                     <i class="pr-2 fa-solid fa-gauge-high"></i>
@@ -54,11 +54,11 @@
                             <li class="px-4 py-2 rounded-md hover:bg-indigo-500 hover:text-white">
                                 <a href="{{ route('client.index') }}">
                                     <i class="pr-2 fa-solid fa-users"></i>
-                                    clients
+                                    Clients
                                 </a>
                                 
                             </li>
-                            <li class="px-4 py-4 rounded-md hover:bg-indigo-600 hover:text-white">
+                            <li class="px-4 py-2 rounded-md hover:bg-indigo-600 hover:text-white">
                                 @if(auth()->user()->role ==="Admin")
                                 <a href="{{ route('user.index') }}"><i class="pr-2 fa-solid fa-table"></i>
                                     Users
@@ -80,6 +80,31 @@
                                     </a>
                                     
                                 </li>
+
+                                <li class="px-4  py-2 rounded-md hover:bg-indigo-500 hover:text-white">
+                                    <a href="{{ route('leave.index') }}">
+                                        <i class="fa-sharp fa-solid fa-newspaper"></i>
+                                        Leave Applications
+                                    </a>
+                                    
+                                </li>
+
+                                <li class="px-4 py-2 rounded-md hover:bg-indigo-500 hover:text-white">
+                                    <a href="{{ route('admin.attendence') }}">
+                                        <i class="fa-sharp fa-solid fa-newspaper"></i>
+                                        Admin Attendences
+                                    </a>
+                                    
+                                </li>
+
+                                <li class="px-2 py-2 my-2 rounded-md hover:bg-indigo-600 hover:text-white">
+                                    <form action="{{route('logout')}}" method="post">
+                                      @csrf
+                                      <input type="submit" value="Logout">
+                                    </form>
+                                      
+                                     
+                                   </li>
                         </ul>
                     </div>
                 </nav> 

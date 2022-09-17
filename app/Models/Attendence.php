@@ -15,5 +15,11 @@ class Attendence extends Model
         'late-entry',
         'early-exit',
         'date',
+        'total_hour',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

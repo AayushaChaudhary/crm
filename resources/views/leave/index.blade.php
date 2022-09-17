@@ -4,76 +4,92 @@
 @endsection
 
 @section('main')
-<x-alert />
+
 <div class="shadow-lg">
     <div class="w-full">
-        <div class="text-black text-xl font-bold py-5 px-8">Airlines Informations
-            <a href="{{ route('airline.create') }}">
+        <div class="text-black text-2xl font-bold py-5 px-8">Leaves Application
+            <a href="{{ route('leave.create') }}">
                 <button class="bg-blue-500 text-white text-sm rounded-full hover:bg-blue-200 py-2 px-4 text-center float-right">
                     <i class="fas fa-plus-circle mr-2"></i>
-                    Add New
+                    Ask Leave
                 </button>
-            </a>
+            </a> 
         </div> 
     </div>
     
     <div class="overflow-x-auto relative w-100%">
-        <table class="w-full m-6 shadow-lg text-sm text-left text-gray-500 dark:text-gray-400" id="myTable">
+        <table class="w-full m-6 shadow-lg text-sm text-left text--500 dark:text-gray-400" id="myTable">
             <thead class="text-xs text-gray-700 uppercase bg-blue-500 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                     <th scope="col" class="py-3 px-6">
                         Id
                     </th>
                     <th scope="col" class="py-3 px-6">
-                        Title
+                        subject
+                    </th>
+                     <th scope="col" class="py-3 px-6">
+                        Date
                     </th>
                     <th scope="col" class="py-3 px-6">
-                        Type
+                        Image
                     </th>
+                    <th scope="col" class="py-3 px-6">
+                        Status
+                    </th> 
+
                     <th scope="col" class="py-3 px-6">
                         Action
-                    </th>
+                    </th> 
+                    
                     
                 </tr>
             </thead>
             <tbody>
-                @foreach ($airline as $airline )
+                @foreach ($leave as $leave )
                 <tr>
                     <td>
-                        {{ $airline->id }}
+                        {{ $leave->id }}
                     </td>
                
                     <td>
-                        {{ $airline->title }}
+                        {{ $leave->subject }}
+                    </td>
+
+                    <td>
+                        {{ $leave->date}}
+                    </td>
+                    <td>
+                        <img src="/storage/{{ $leave->image}}" class="h-4">
+                    </td>
+                    <td>
+                        {{ $leave->status }}
                     </td>
     
-                    <td>
-                        {{ $airline->type }}
-                    </td>
+                    
                 
                     
                     <td>
-                        <button class="bg-blue-500 text-white font-bold py-2 px-4 rounded">
-                            <a href="{{ route('airline.show',$airline) }}">
+                        {{-- <button class="bg-blue-500 text-white font-bold py-2 px-4 rounded">
+                            <a href="{{ route('leave.show',$leave) }}">
                                 Show
                             </a>
-                        </button> 
+                        </button>  --}}
                         <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">
-                            <a href="{{ route('airline.edit',$airline) }}">
+                            <a href="{{ route('leave.edit',$leave) }}">
                                 Edit
                             </a>
                         </button> 
     
                        
     
-                        <button onclick="show({{$airline->id}})" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">
+                        {{-- <button onclick="show({{$airline->id}})" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">
                             
                                 Delete
                             </a>
-                        </button> 
+                        </button>  --}}
                     {{-- </form> --}}
                         
-                    </td>
+                    {{-- </td> --}}
                 </tr>
                 @endforeach
             </tbody>
@@ -104,6 +120,7 @@
 </div>
 </div>
 
+   
 </div>
 
 

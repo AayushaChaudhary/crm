@@ -16,8 +16,8 @@ class AttendenceController extends Controller
      */
     public function index()
     {
-        $attendence = Attendence::all();
-        return view('attendence.index', compact('attendence'));
+        $attendence = Attendence::where('user_id', auth()->user()->id)->get();
+        return view("attendence.index", compact("attendence"));
     }
 
     /**
@@ -41,12 +41,12 @@ class AttendenceController extends Controller
 
         $attendence = new Attendence;
         $attendence->user_id = Auth::user()->id;
-        $attendence->clock_in = Carbon::now()->format('H:i:S');
-        $attendence->clock_out = Carbon::now()->format('H:i:S');
+        $attendence->clock_in = Carbon::now()->format('H:i:s');
+        // $attendence->clock_out = Carbon::now()->format('H:i:S');
         $attendence->date = Carbon::now()->format('y-m-d');
 
 
-        if (Attendence::where('date', carbon::today()->format('y-m-d'))->exists()) {
+        if (Attendence::where('user_id', auth()->user()->id)->where('date', carbon::today()->format('y-m-d'))->exists()) {
             return redirect()->back();
         } elseif (Auth::user()->entry_time < Carbon::now()->format('H:i:s')) {
             if ($request->reason == null) {
@@ -54,6 +54,7 @@ class AttendenceController extends Controller
             }
             $attendence->late_entry = $request->reason;
         }
+
 
 
 
@@ -95,8 +96,17 @@ class AttendenceController extends Controller
     {
 
         $attendence->user_id = Auth::user()->id;
-        $attendence->clock_out = Carbon::now()->format('H:i:S');
+        $attendence->clock_out = Carbon::now()->format('H:i:s');
+        // total work
+        $a = Carbon::parse(Attendence::where('date', Carbon::today()->format('y-m-d'))->where(
+            'user_id',
+            Auth::id()
+        )->pluck('clock_in')->first());
 
+        $b = Carbon::parse(Carbon::now()->format('H:i:s'));
+        $attendence->total_hour = Carbon::parse($a->diffInSeconds($b))->format('H:i:s');
+
+        // clock out
         if (Auth::user()->exit_time > Carbon::now()->format('H:i:s')) {
             if ($request->reason1 == null) {
                 return redirect()->back()->with('message', "your field is empty");

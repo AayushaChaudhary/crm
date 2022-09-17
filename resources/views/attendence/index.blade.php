@@ -5,8 +5,9 @@
 
 @section('main')
 
+<div class="shadow-lg">
     <div class="w-full">
-        <div class="text-black text-2xl font-bold py-5 px-8">Attendences Informations
+        <div class="text-black text-xl font-bold py-5 px-8">Attendences Informations
             {{-- <a href="{{ route('attendence.create') }}">
                 <button class="bg-blue-500 text-white text-sm rounded-full hover:bg-blue-200 py-2 px-4 text-center float-right">
                     <i class="fas fa-plus-circle mr-2"></i>
@@ -17,8 +18,8 @@
     </div>
     
     <div class="overflow-x-auto relative w-100%">
-        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400" id="myTable">
-            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <table class="w-full m-6 shadow-lg text-sm text-left text-gray-500 dark:text-gray-400" id="myTable">
+            <thead class="text-xs text-gray-700 uppercase bg-blue-500 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                     <th scope="col" class="py-3 px-6">
                         Id
@@ -37,6 +38,9 @@
                     </th>
                     <th scope="col" class="py-3 px-6">
                         Early exit
+                    </th>
+                    <th scope="col" class="py-3 px-6">
+                        Total hours
                     </th>
 
                     <th scope="col" class="py-3 px-6">
@@ -68,6 +72,9 @@
                     </td>
                     <td>
                         {{ $attendence->early_exit }}
+                    </td>
+                    <td>
+                        {{ $attendence->total_hour }}
                     </td>
                     <td>
                         {{ $attendence->date }}
@@ -128,6 +135,9 @@
         
     </div>
 </div>
+</div>
+
+
 </div>
 
 
