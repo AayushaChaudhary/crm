@@ -12,4 +12,8 @@ class Department extends Model
     protected $fillable = [
         'title',
     ];
+    public function task()
+    {
+        return $this->hasMany(Task::class);
+    }
 }

@@ -22,8 +22,17 @@
     </div>
 
     <div>
-        <x-label for="type" :value="__('Type')" />
-        <input type="text" name="type" id="type" value= "{{ $airline->title }}" class="w-full rounded-md">
+        <x-label for="type" :value="__('type')" />
+        <select name="type" id="type" class="block mt-1 w-full" >
+            {{-- <option value="admin"  @if($user->role=='admin') selected @endif>Admin</option> --}}
+            {{-- <option value="user"  @if($user->role=='user') selected @endif>User</option> --}}
+            @foreach (\App\Models\Airline::CRUD_TYPE as $type )
+                <option value="{{ $type }}" @if($airline->type==$type) selected @endif>
+                    {{ $type }}
+                </option>
+            @endforeach
+            
+        </select>
     </div>
 
 

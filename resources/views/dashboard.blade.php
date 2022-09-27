@@ -3,45 +3,72 @@
 <div class="shadow-lg h-full">
     <div class="w-full">
    
-    <div class="flex md:flex-row gap-10 justify-end mt-5 flex-col px-5">
-        <div class="block rounded-lg bg-blue-500 shadow-lg p-2  hover:bg-indigo-500 hover:text-white">
+    <div class="flex lg:flex-row gap-10 justify-between mt-5 flex-col px-5">
+        
+        <div class="mx-6 text-2xl font-bold ">Dashboard</div>
+        <div class="flex mx-6 ">
+        <div class="block rounded-lg mr-2 bg-blue-500 shadow-lg p-2  hover:bg-indigo-500 hover:text-white">
            
-            <button class="font-bold text-black hover:text-white pl-2" onclick="show()">
-                <i class="fa-solid fa-clock pr-2"></i>Clock In </button>
+            <button class="font-bold  text-white hover:text-black pl-2" onclick="show()">
+                <i class="fa-solid fa-stopwatch"></i><i class="m-1 fa-solid fa-arrow-right"></i>Clock In </button>
         </div>
 
-        <div class="block rounded-lg bg-blue-500 shadow-lg p-2 hover:bg-indigo-500 hover:text-white">
+        <div class="block rounded-lg mr-2 bg-blue-500 shadow-lg p-2 hover:bg-indigo-500 hover:text-white">
             
-            <button class="font-bold text-black pl-2 hover:text-white" onclick="cshow()">
-                <i class="fa-solid fa-clock pr-2"></i>Clock Out</button>
+            <button class="font-bold text-white pl-2 hover:text-black" onclick="cshow()">
+                <i class="fa-solid fa-stopwatch"></i><i class="m-1 fa-solid fa-arrow-right"></i>Clock Out</button>
+        </div>
+
+        <div class="block rounded-lg mr-2 bg-blue-500 shadow-lg p-2  hover:bg-indigo-500 hover:text-white">
+            <button class="font-bold text-white pl-2 hover:text-black ">
+
+            <form action="{{route('logout')}}" method="post">
+                @csrf
+                <i class="fa-sharp fa-solid fa-person-walking-arrow-right"></i>
+                <input type="submit" value="Logout">
+              </form>
+            </button>
+        </div>
+
+        <div class="block rounded-lg mr-2 bg-blue-500 shadow-lg p-2 hover:bg-indigo-500 hover:text-white">
+            
+            <button class="font-bold text-white pl-2 hover:text-black">
+                <a href="{{ route('leave.create') }}">
+                    <i class="fa-sharp fa-solid fa-person-walking"></i>Ask leave
+                </a>
+                </button>
+        </div>
+
+
+        
         </div>
 
         
     </div>
 <div class="flex flex-col flex-wrap gap-5 m-6 md:flex-row">
     <div class="flex h-20 p-2 bg-white border-red-100 rounded-md shadow-xl w-70">
-        <span class="items-center px-5 py-5 text-white bg-indigo-600 rounded-md"><i class="fa-solid fa-eye"></i></span>
+        <span class="items-center px-5 py-5 text-white bg-blue-500 rounded-md"><i class="fa-solid fa-eye"></i></span>
         <div class="mx-4 mt-4 ">
         <div class="antialiased font-bold text-gray-600 ">Total Attendences</div>
         <div class="text-sm text-gray-600">{{ $attendance }}</div>
         </div>
     </div>
-    <div class="flex h-20 p-2 bg-white border-red-100 rounded-md shadow-xl w-60">
-        <span class="items-center px-5 py-5 text-white bg-indigo-600 rounded-md"><i class="fa-solid fa-eye"></i></span>
+    <div class="flex h-20 p-2 bg-white border-red-100 rounded-md shadow-xl w-70">
+        <span class="items-center px-5 py-5 text-white bg-blue-500 rounded-md"><i class="fa-solid fa-eye"></i></span>
         <div class="mx-4 mt-4 ">
         <div class="antialiased font-bold text-gray-600 ">Followers</div>
         <div class="text-sm text-gray-600">16</div>
         </div>
     </div>
     <div class="flex h-20 p-2 bg-white border-red-100 rounded-md shadow-xl w-60">
-        <span class="items-center px-5 py-5 text-white bg-indigo-600 rounded-md"><i class="fa-solid fa-eye"></i></span>
+        <span class="items-center px-5 py-5 text-white bg-blue-500 rounded-md"><i class="fa-solid fa-eye"></i></span>
         <div class="mx-4 mt-4 ">
         <div class="antialiased font-bold text-gray-600 ">Profile Views</div>
         <div class="text-sm text-gray-600">16</div>
         </div>
     </div>
     <div class="flex h-20 p-2 bg-white border-red-100 rounded-md shadow-xl w-60">
-        <span class="items-center px-5 py-5 text-white bg-indigo-600 rounded-md"><i class="fa-solid fa-eye"></i></span>
+        <span class="items-center px-5 py-5 text-white bg-blue-500 rounded-md"><i class="fa-solid fa-eye"></i></span>
         <div class="mx-4 mt-4 ">
         <div class="antialiased font-bold text-gray-600 ">Profile Views</div>
         <div class="text-sm text-gray-600">16</div>

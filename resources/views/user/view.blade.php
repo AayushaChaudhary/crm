@@ -7,11 +7,11 @@
 
 <div class="shadow-lg">
     <div class="w-full">
-        <div class="text-black text-xl font-bold py-5 px-8">Clients Informations
-            <a href="{{ route('client.create') }}">
+        <div class="text-black text-xl font-bold py-5 px-8">Task Informations
+            <a href="{{ route('user.index') }}">
                 <button class="bg-blue-500 text-white text-sm rounded-full hover:bg-blue-200 py-2 px-4 text-center float-right">
                     <i class="fas fa-plus-circle mr-2"></i>
-                    Add New
+                    Back
                 </button>
             </a>
         </div> 
@@ -25,78 +25,56 @@
                         Id
                     </th>
                     <th scope="col" class="py-3 px-6">
-                        Name
+                        User
                     </th>
                     <th scope="col" class="py-3 px-6">
-                        Email
-                    </th>
-                   
-                    <th scope="col" class="py-3 px-6">
-                        Address
+                        Client
                     </th>
                     <th scope="col" class="py-3 px-6">
-                        Phoneno
+                        Department
                     </th>
                     <th scope="col" class="py-3 px-6">
-                        Added By
+                        Purpose
                     </th>
                     <th scope="col" class="py-3 px-6">
-                        Action
+                        Remarks
                     </th>
+                    <th scope="col" class="py-3 px-6">
+                        Status
+                    </th>
+
                 </tr>
             </thead>
             <tbody>
-                @foreach ($client as $client )
+                @foreach ($task as $task )
                 <tr>
                     <td>
-                        {{ $client->id }}
+                        {{ $task->id }}
                     </td>
                
                     <td>
-                        {{ $client->name }}
-                    </td>
-    
-                    <td>
-                        {{ $client->email }}
-                    </td>
-                
-                    <td>
-                        {{ $client->address }}
-                    </td>
-               
-                    <td>
-                        {{ $client->phoneno }}
+                        {{ $task->user->name }}
                     </td>
                     <td>
-                        {{ $client->user->name }}
+                        {{ $task->client->name }}
                     </td>
-    
+                    <td>
+                        {{ $task->department->title }}
+                    </td>
+                    <td>
+                        {{ $task->purpose->name }}
+                    </td>
+                    <td>
+                        {{ $task->remarks }}
+                    </td>
+                    <td>
+                        {{ $task->status }}
+                    </td>
+
 
     
-                    <td>
-                        <button>
-                            <a href="{{ route('client.show',$client) }}">
-                                <i class="fa-sharp fa-solid fa-eye y-2 px-2 text-blue-500 text-xl "></i>
-                            </a>
-                        </button> 
-                        <button>
-                            <a href="{{ route('client.edit',$client) }}">
-                                <i class="fa-sharp fa-solid fa-pen-to-square y-2 px-2 text-green-500 text-xl"></i>
-                            </a>
-                        </button> 
-                        <button>
-                            <a href="{{ route('task.assign',$client->id)}}">
-                                <i class="fa-sharp fa-solid fa-arrow-right y-2 px-2 text-yellow rounded-full bg-yellow-500 p-2"></i>
-                            </a>
-
-    
-                       
-    
-                        <button onclick="show({{$client->id}})">
-                            
-                            <i class="fa-sharp fa-solid fa-trash y-2 px-2 text-red-500 text-xl"></i>
-                            </a>
-                        </button> 
+                   
+                        
                     {{-- </form> --}}
                         
                     </td>
@@ -106,7 +84,7 @@
         </table>
 
          <!-- Delete -->
-
+      
 </div>
 
    
@@ -127,21 +105,5 @@
     $('#myTable').DataTable();
 } );
 </script>
-<script>
-    function show($id) {
-        document.getElementById('client-id').value = $id;
-        $('.deleteModal').removeClass('hidden');
 
-    }
-    function hide(){
-        $('.deleteModal').addClass('hidden');
-    }
-
-    function deleteClient() {
-        $id = document.getElementById('client-id').value; 
-        hide();
-
-    }
-    
-</script>
 @endsection

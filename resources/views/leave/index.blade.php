@@ -74,9 +74,9 @@
                                 Show
                             </a>
                         </button>  --}}
-                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">
+                        <button>
                             <a href="{{ route('leave.edit',$leave) }}">
-                                Edit
+                                <i class="fa-sharp fa-solid fa-pen-to-square y-2 px-2 text-green-500 text-xl"></i>
                             </a>
                         </button> 
     

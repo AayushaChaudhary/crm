@@ -46,22 +46,22 @@
     
                    
                     <td>
-                        <button class="bg-blue-500 text-white font-bold py-2 px-4 rounded">
+                        <button>
                             <a href="{{ route('department.show',$department) }}">
-                                Show
+                                <i class="fa-sharp fa-solid fa-eye y-2 px-2 text-blue-500 text-xl "></i>
                             </a>
                         </button> 
-                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">
+                        <button>
                             <a href="{{ route('department.edit',$department) }}">
-                                Edit
+                                <i class="fa-sharp fa-solid fa-pen-to-square y-2 px-2 text-green-500 text-xl"></i>
                             </a>
                         </button> 
     
                        
     
-                        <button onclick="show({{$department->id}})" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">
+                        <button onclick="show({{$department->id}})">
                             
-                                Delete
+                            <i class="fa-sharp fa-solid fa-trash y-2 px-2 text-red-500 text-xl"></i>
                             </a>
                         </button> 
                     {{-- </form> --}}

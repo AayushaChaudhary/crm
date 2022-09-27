@@ -70,8 +70,20 @@
                         {{ $leave->status }}
                     </td>
                     <td>
-                        <button type="submit" onclick="popup()"><i class="fas fa-check mr-2">Approved</i></button>
+                        <button type="submit" onclick="popup('{{ $leave->id }}')">
+                            <i class="fas fa-check mr-2">Approved</i></button>
+                        <button type="submit" onclick="popupp('{{ $leave->id }}')">
+                            <i class="fas fa-check mr-2">Declined</i></button>
+                        </button>
+                        <button>
+                            <a href="{{ route('admin.leaves.show',$leave->id) }}">
+                            <i class="fa-sharp fa-solid fa-eye y-2 px-2 text-blue-500 text-xl"></i>
+                            </a>
+                        </button>
+    
                     </td>
+                   
+
                        
     
                         {{-- <button onclick="show({{$airline->id}})" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">
@@ -101,7 +113,7 @@
                     <div class="flex text-center px-40 gap-5 justify-center">
                             <form action="{{ route('admin.leave.approved') }}" method="post">
                                 @csrf
-                                <input type="hidden" id="leave_id" value="{{ $leave->id }}" name="leave_id">
+                                <input type="hidden" id="leave_id_approved" value="" name="leave_id">
                                 <textarea class="flex justify-center" name="remarks" id="remarks" placeholder="Reason here...."></textarea>
                                 <div class="pt-3">
                                     <button type="submit"  class="py-2 px-4 bg-blue-400 justify-center ">
@@ -117,6 +129,36 @@
             
                 
             </div>
+</div>
+<div class=" hidden  showboxx backdrop-blur-lg fixed top-0 left-0 right-0 bottom-0 p-2 bg-gray-800 bg-opacity-25 border-red-100 rounded-md shadow-xl w-full flex-center">
+    <div class="flex justify-center">
+        <div class="bg-white shadow-lg rounded-md w-96 h-96 mt-[10%]">
+            <div class="py-3 px-5">
+                <i onclick="hidee()" class="fa-solid fa-circle-xmark pr-2"></i>
+            </div>
+            <div class="text-center text-black text-xl py-10 px-10 mt-2">
+               <h1 class="font-bold">Remarks</h1>
+            </div>
+
+            <div class="flex text-center px-40 gap-5 justify-center">
+                    <form action="{{ route('admin.leave.declined') }}" method="post">
+                        @csrf
+                        <input type="hidden" id="leave_id_declined" value="" name="leave_id">
+                        <textarea class="flex justify-center" name="remarks" id="remarks" placeholder="Reason here...."></textarea>
+                        <div class="pt-3">
+                            <button type="submit"  class="py-2 px-4 bg-blue-400 justify-center ">
+                                
+                                submit</button>
+                        </div>
+                       
+                    </form>
+            </div>
+        </div>
+        
+    </div>
+    
+        
+    </div>
 </div>
 </div>
 
@@ -136,12 +178,22 @@
 } );
 </script>
 <script>
-    function popup() {
+    function popup($id) {
+        $('#leave_id_approved').val($id);
         $('.showbox').removeClass('hidden');
         
     }
     function hide() {
         $('.showbox').addClass('hidden');
+    }
+
+    function popupp($id) {
+        $('#leave_id_declined').val($id);
+        $('.showboxx').removeClass('hidden');
+        
+    }
+    function hidee() {
+        $('.showboxx').addClass('hidden');
     }
     
 </script>

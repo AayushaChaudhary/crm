@@ -26,10 +26,14 @@
 
     <div>
         <x-label for="type" :value="__('Type')" />
-
-        <x-input id="type" class="block mt-1 w-full" type="text" name="type" :value="old('type')" required autofocus />
+        <select name="type" id="type" class="block mt-1 w-full">
+            <option value=""selected disabled>Choose One..</option>
+            <option value="domestic">Domestic</option>
+            <option value="international">International</option>
+        
+            
+        </select>
     </div>
-
 
 
 

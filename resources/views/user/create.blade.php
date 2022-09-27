@@ -40,7 +40,7 @@
     <div>
         <x-label for="dob" :value="__('dob')" />
 
-        <x-input id="dob" class="block mt-1 w-full" type="text" name="dob" :value="old('dob')" required autofocus />
+        <x-input id="dob" class="block mt-1 w-full" type="date" name="dob" :value="old('dob')" required autofocus />
     </div>
 
 
@@ -92,11 +92,7 @@
         <x-input id="bloodgroup" class="block mt-1 w-full" type="text" name="bloodgroup" :value="old('bloodgroup')" required autofocus />
     </div>
 
-    <div>
-        <x-label for="entry_time" :value="__('entry_time')" />
-
-        <x-input id="entry_time" class="block mt-1 w-full" type="text" name="entrytime" :value="old('entry_time')" required autofocus />
-    </div>
+    
 
 
 <div class="pt-3 ">

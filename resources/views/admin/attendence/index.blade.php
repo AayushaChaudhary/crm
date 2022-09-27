@@ -4,7 +4,7 @@
 @endsection
 
 @section('main')
-
+<div class="shadow-lg">
     <div class="w-full">
         <div class="text-black text-2xl font-bold py-5 px-8">Attendences Informations
             {{-- <a href="{{ route('attendence.create') }}">
@@ -62,9 +62,9 @@
                 
                 
                     <td>
-                        <button class="bg-blue-500 text-white font-bold py-2 px-4 rounded">
+                        <button>
                             <a href="{{ route('admin.attendence.show',$user->id) }}">
-                                Show
+                                <i class="fa-sharp fa-solid fa-record-vinyl y-2 px-2 text-yellow-500 text-xl"></i>
                             </a>
                         </button> 
                         
@@ -112,6 +112,8 @@
         
     </div>
 </div> --}}
+</div>
+    
 </div>
 
 

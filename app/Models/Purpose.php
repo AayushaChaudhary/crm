@@ -5,15 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Airline extends Model
+class Purpose extends Model
 {
     use HasFactory;
-    const CRUD_TYPE = [
-        'Domestic', 'International',
-    ];
 
     protected $fillable = [
-        'title',
-        'type',
+        'name',
     ];
+    public function task()
+    {
+        return $this->hasMany(Task::class);
+    }
 }

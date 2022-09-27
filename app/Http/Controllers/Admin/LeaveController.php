@@ -33,4 +33,25 @@ class LeaveController extends Controller
         $leave->save();
         return redirect()->route("admin.leaves");
     }
+
+    public function declined(Request $request)
+    {
+        $data = $request->validate([
+            'remarks' => ['required'],
+            'leave_id' => ['required'],
+        ]);
+
+        $leave = Leave::findOrFail($data['leave_id']);
+        $leave->remarks = $data['remarks'];
+        $leave->status = 'declined';
+
+        $leave->save();
+        return redirect()->route('admin.leaves');
+    }
+
+    public function show($id)
+    {
+        $leaves = Leave::find($id);
+        return view('admin.leaves.show', compact('leaves'));
+    }
 }

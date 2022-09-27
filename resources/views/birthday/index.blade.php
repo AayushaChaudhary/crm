@@ -8,13 +8,13 @@
 
 <div class=" shadow-md">
     <div class="w-full">
-        <div class="text-black text-xl font-bold py-5 px-8">Users Informations
-            <a href="{{ route('user.create') }}">
+        <div class="text-black text-xl font-bold py-5 px-8">Upcomming Birthday!
+            {{-- <a href="{{ route('user.create') }}">
                 <button class="bg-blue-500 text-white text-sm rounded-full hover:bg-blue-200 py-2 px-4 text-center float-right">
                     <i class="fas fa-plus-circle mr-2"></i>
                     Add New
                 </button>
-            </a>
+            </a> --}}
         </div> 
     </div>
     
@@ -31,38 +31,21 @@
                     <th scope="col" class="py-3 px-6">
                         Email
                     </th>
-                   
-                    <th scope="col" class="py-3 px-6">
-                        dob
-                    </th>
                     <th scope="col" class="py-3 px-6">
                         Address
                     </th>
                     <th scope="col" class="py-3 px-6">
-                        Phoneno
+                        Remaining
                     </th>
+                   
                     <th scope="col" class="py-3 px-6">
-                        Role
+                        dob
                     </th>
-                    <th scope="col" class="py-3 px-6">
-                        Post
-                    </th>
-                    <th scope="col" class="py-3 px-6">
-                        Bloodgroup
-                    </th>
-                    <th scope="col" class="py-3 px-6">
-                        entry Time
-                    </th>
-                    <th scope="col" class="py-3 px-6">
-                        exit Time
-                    </th>
-                    <th scope="col" class="py-3 px-6">
-                        Action
-                    </th>
+                   
                 </tr>
             </thead>
             <tbody>
-                @foreach ($user as $user )
+                @foreach ($upcomings as $user )
                 <tr>
                     <td>
                         {{ $user->id }}
@@ -71,71 +54,49 @@
                     <td>
                         {{ $user->name }}
                     </td>
-    
                     <td>
                         {{ $user->email }}
                     </td>
-
+                    <td>
+                        {{ $user->address}}
+                    </td>
+                    <td>
+                        {{ $user->remaining }}
+                    </td>
                     <td>
                         {{ $user->dob}}
                     </td>
                 
-                    <td>
-                        {{ $user->address }}
-                    </td>
-               
-                    <td>
-                        {{ $user->phoneno }}
-                    </td>
+                  
     
-                    <td>
-                        {{ $user->role }}
-                    </td>
-    
-                    <td>
-                        {{ $user->post }}
-                    </td>
-                    <td>
-                        {{ $user->bloodgroup }}
-                    </td>
-
-                    <td>
-                        {{ $user->entry_time }}
-                    </td>
-
-                    <td>
-                        {{ $user->exit_time }}
-                    </td>
-    
-                    <td>
-                        <button>
+                    {{-- <td>
+                        <button class="btn btn-outline-danger btn-sm">
                             <a href="{{ route('user.show',$user) }}">
-                                <i class="fa-sharp fa-solid fa-eye y-2 px-2 text-blue-500 text-xl "></i>
+                                <i class="fa-sharp fa-solid fa-eye y-2 px-2 text-black rounded-full bg-red-500 p-2 "></i>
                             </a>
                         </button> 
-                        <button>
+                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">
                             <a href="{{ route('user.edit',$user) }}">
-                                <i class="fa-sharp fa-solid fa-pen-to-square y-2 px-2 text-green-500 text-xl"></i>
+                                Edit
                             </a>
                         </button> 
 
                         <button>
                             <a href="{{ route('user.view', $user->id)}}">
-                                <i class="fa-sharp fa-solid fa-record-vinyl y-2 px-2 text-yellow-500 text-xl"></i>
-                            </a>
+                                <i class="fa-sharp fa-solid fa-eye  dark:bg-gray-500 py-2 px-3 rounded-full"></i></a>
                             
                         </button>
     
                        
     
-                        <button onclick="show({{$user->id}})">
+                        <button onclick="show({{$user->id}})" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">
                             
-                            <i class="fa-sharp fa-solid fa-trash y-2 px-2 text-red-500 text-xl"></i>
+                                Delete
                             </a>
                         </button> 
                     {{-- </form> --}}
                         
-                    </td>
+                    </td> 
                 </tr>
                 @endforeach
             </tbody>
