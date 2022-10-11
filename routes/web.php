@@ -17,6 +17,9 @@ use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdminTaskController;
 use App\Http\Controllers\BirthdayController;
+use App\Http\Controllers\ExpenditureController;
+use App\Http\Controllers\IncomeController;
+use App\Http\Controllers\TicketController;
 
 /*
 |--------------------------------------------------------------------------
@@ -67,6 +70,19 @@ Route::post("task/processing/{id}", [AllTaskController::class, "processing"])->n
 
 
 Route::get('birthday', [BirthdayController::class, "index"])->name('birthday.index');
+Route::get('birthday/client', [BirthdayController::class, "cindex"])->name('birthday.cindex');
+
+Route::resource('tickets', TicketController::class);
+Route::post('/ticket/delete', [TicketController::class, 'deleteTicket'])->name('ticket.delete');
+Route::get('ticket/domestic', [TicketController::class, "index"])->name('ticket.domestic');
+Route::get('ticket/international', [TicketController::class, "index"])->name('ticket.international');
+Route::get('ticket/today', [TicketController::class, "index"])->name('ticket.today');
+
+Route::resource('income', IncomeController::class);
+Route::post('/income/delete', [IncomeController::class, 'deleteIncome'])->name('income.delete');
+
+Route::resource('expenditure', ExpenditureController::class);
+Route::post('/expenditure/delete', [ExpenditureController::class, 'deleteExpenditure'])->name('expenditure.delete');
 
 
 

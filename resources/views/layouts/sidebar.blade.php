@@ -25,7 +25,7 @@
          <div class="flex ">
             <div class="h-screen">
 
-                <nav class="hidden h-screen fixed hover:overflow-scroll  bg-blue-200 shadow-lg w-72 md:block">
+                <nav class="hidden z-[999] h-screen fixed hover:overflow-scroll  bg-blue-200 shadow-lg w-72 md:block">
                     <div class="p-6 mx-8">
                         <ul class="text-xl antialiased font-bold text-blue-500">
                             <li class="px-2 text-3xl"><i class="fa-sharp fa-solid fa-house"> CRM</i>
@@ -129,18 +129,57 @@
                                     
                                 </li>
 
-                                <li class="px-4 text-black  py-2 rounded-md hover:bg-blue-500 hover:text-white">
-                                    <a href="{{ route('birthday.index') }}">
-                                        <i class="fa-sharp fa-solid fa-cake-candles"></i>
-                                        Birthday
-                                    </a>
+                                <li  onclick = "birthdayToggle()" class="px-4 text-black  py-2 rounded-md hover:bg-blue-500 hover:text-white">
+                                            <i class="fa-sharp fa-solid fa-cake-candles"></i>
+                                            Birthday
+                                         
                                     
                                 </li>
+
+                                <a href="{{ route('birthday.index') }}">
+                                <li class=" hidden birthday px-4 text-black  py-2 rounded-md hover:bg-blue-500 hover:text-white">
+                                    
+                                        <i class="fa-sharp fa-solid fa-cake-candles"></i>
+                                        User
+
+                            </li>
+                        </a>  
+                            <a href="{{ route('birthday.cindex') }}">
+                                <li class=" hidden birthday px-4 text-black  py-2 rounded-md hover:bg-blue-500 hover:text-white">
+                                    
+                                        <i class="fa-sharp fa-solid fa-cake-candles"></i>
+                                        client
+
+                                
+                            </li>
+                        </a>  
 
                                 <li class="px-4 text-black py-2 rounded-md hover:bg-blue-500 hover:text-white">
                                     <a href="{{ route('admin.attendence') }}">
                                         <i class="fa-sharp fa-solid fa-newspaper"></i>
                                         All Attendences
+                                    </a>
+                                    
+                                </li>
+
+                                <li class="px-4 text-black py-2 rounded-md hover:bg-blue-500 hover:text-white">
+                                    <a href="{{ route('tickets.index') }}">
+                                        <i class="fa-sharp fa-solid fa-newspaper"></i>
+                                        Ticket
+                                    </a>
+                                    
+                                </li>
+                                <li class="px-4 text-black py-2 rounded-md hover:bg-blue-500 hover:text-white">
+                                    <a href="{{ route('income.index') }}">
+                                        <i class="fa-sharp fa-solid fa-newspaper"></i>
+                                        Income
+                                    </a>
+                                    
+                                </li>
+                                <li class="px-4 text-black py-2 rounded-md hover:bg-blue-500 hover:text-white">
+                                    <a href="{{ route('expenditure.index') }}">
+                                        <i class="fa-sharp fa-solid fa-newspaper"></i>
+                                        Expenditure
                                     </a>
                                     
                                 </li>
@@ -155,9 +194,16 @@
             <div class="w-full p-4 lg:: ml-72">
                 @yield('main')
                 @yield('js')
+
+                <script>
+                    function birthdayToggle(){
+            $('.birthday').toggleClass('hidden');
+        }
+            </script>
+
             </div>
         </div>
-        
+
         
     </body>
 </html>

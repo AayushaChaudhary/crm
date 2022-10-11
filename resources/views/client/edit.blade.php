@@ -48,6 +48,10 @@
         <x-label for="phoneno" :value="__('phoneno')" />
         <input type="text" name="phoneno" id="phoneno" value= "{{ $client->phoneno }}" class="w-full rounded-md">
     </div>
+    <div>
+        <x-label for="dob" :value="__('dob')" />
+        <input type="text" name="dob" id="dob" value= "{{ $client->dob }}" class="w-full rounded-md">
+    </div>
 
    
 

@@ -7,8 +7,8 @@
 
 <div class="shadow-lg">
     <div class="w-full">
-        <div class="text-black text-xl font-bold py-5 px-8">Clients Informations
-            <a href="{{ route('client.create') }}">
+        <div class="text-black text-xl font-bold py-5 px-8">Income Informations
+            <a href="{{ route('income.create') }}">
                 <button class="bg-blue-500 text-white text-sm rounded-full hover:bg-blue-200 py-2 px-4 text-center float-right">
                     <i class="fas fa-plus-circle mr-2"></i>
                     Add New
@@ -25,80 +25,60 @@
                         Id
                     </th>
                     <th scope="col" class="py-3 px-6">
-                        Name
+                        particulars
                     </th>
                     <th scope="col" class="py-3 px-6">
-                        Email
-                    </th>
-                   
-                    <th scope="col" class="py-3 px-6">
-                        Address
+                        Amount
                     </th>
                     <th scope="col" class="py-3 px-6">
-                        Phoneno
+                        Remarks
                     </th>
                     <th scope="col" class="py-3 px-6">
-                        dob
+                        date
                     </th>
-                    <th scope="col" class="py-3 px-6">
-                        Added By
-                    </th>
+                    
                     <th scope="col" class="py-3 px-6">
                         Action
                     </th>
+                    
                 </tr>
             </thead>
             <tbody>
-                @foreach ($client as $client )
+                @foreach ($income as $income)
                 <tr>
                     <td>
-                        {{ $client->id }}
+                        {{ $income->id }}
                     </td>
                
                     <td>
-                        {{ $client->name }}
+                        {{ $income->particulars }}
+                    </td>
+                    <td>
+                        {{ $income->amount }}
+                    </td>
+                    <td>
+                        {{ $income->remarks }}
+                    </td>
+                    <td>
+                        {{ $income->date }}
                     </td>
     
-                    <td>
-                        {{ $client->email }}
-                    </td>
-                
-                    <td>
-                        {{ $client->address }}
-                    </td>
-               
-                    <td>
-                        {{ $client->phoneno }}
-                    </td>
-                    <td>
-                        {{ $client->dob }}
-                    </td>
-                    <td>
-                        {{ $client->user->name }}
-                    </td>
-    
-
-    
+                   
                     <td>
                         <button>
-                            <a href="{{ route('client.show',$client) }}">
+                            <a href="{{ route('income.show',$income) }}">
                                 <i class="fa-sharp fa-solid fa-eye y-2 px-2 text-blue-500 text-xl "></i>
                             </a>
                         </button> 
                         <button>
-                            <a href="{{ route('client.edit',$client) }}">
+                            <a href="{{ route('income.edit',$income) }}">
                                 <i class="fa-sharp fa-solid fa-pen-to-square y-2 px-2 text-green-500 text-xl"></i>
                             </a>
                         </button> 
-                        <button>
-                            <a href="{{ route('task.assign',$client->id)}}">
-                                <i class="fa-sharp fa-solid fa-arrow-right y-2 px-2 text-yellow rounded-full bg-yellow-500 p-2"></i>
-                            </a>
-
     
                        
     
-                        <button onclick="show({{$client->id}})">
+                        <button onclick="show({{$income->id}})">
                             
                             <i class="fa-sharp fa-solid fa-trash y-2 px-2 text-red-500 text-xl"></i>
                             </a>
@@ -112,10 +92,31 @@
         </table>
 
          <!-- Delete -->
-
+         <div class="hidden deleteModal backdrop-blur-lg fixed top-0 left-0 right-0 bottom-0 p-2 bg-gray-800 bg-opacity-25 border-red-100 rounded-md shadow-xl w-full flex-center">
+            <div class="flex justify-center">
+                <div class="bg-white shadow-lg rounded-md w-96 h-96 mt-[10%]">
+                    <div class="text-center text-black text-xl py-10 px-10 mt-2">
+                       <h1 class="font-bold"> Are you sure?</h1>
+                    </div>
+        
+                    <div class="flex text-center px-40 gap-5 justify-center">
+                        <button class="py-2 px-4 bg-blue-400 justify-center mr-5" onclick="hide()">No</button>
+                            <form action="{{ route('income.delete') }}" method="post">
+                                @csrf
+                                <input type="hidden" value="1" id="income-id" name="income-id">
+                                <button type="submit" class="py-2 px-4 bg-blue-400 justify-center ">yes</button>
+                            </form>
+                    </div>
+                </div>
+                
+            </div>
+            
+                
+            </div>
+        </div>
 </div>
 
-   
+    
 </div>
 
 
@@ -135,7 +136,7 @@
 </script>
 <script>
     function show($id) {
-        document.getElementById('client-id').value = $id;
+        document.getElementById('income-id').value = $id;
         $('.deleteModal').removeClass('hidden');
 
     }
@@ -143,8 +144,8 @@
         $('.deleteModal').addClass('hidden');
     }
 
-    function deleteClient() {
-        $id = document.getElementById('client-id').value; 
+    function deleteIncome() {
+        $id = document.getElementById('income-id').value; 
         hide();
 
     }

@@ -25,10 +25,11 @@
 
     <div class="mt-4">
         <label for="client_id">Client</label>
-        <select name="client_id" id="client_id" class="block mt-1 w-full" required autofocus>
-          <option value="{{ $client->id }}" selected>{{ $client->name }}</option>
-
+        <select type="text" name="client_id" id="client_id" class="block mt-1 w-full" required autofocus>
+            <option value="{{ $client->id }}">{{ $client->name }}</option>
         </select>
+         
+        
     </div>
 
     <div class="mt-4">

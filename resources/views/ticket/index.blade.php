@@ -7,13 +7,57 @@
 
 <div class="shadow-lg">
     <div class="w-full">
-        <div class="text-black text-xl font-bold py-5 px-8">Task Informations
-            {{-- <a href="{{ route('task.create') }}">
+        <div class="text-black text-xl font-bold py-5 px-8">Ticket Informations
+            <a href="{{ route('tickets.create') }}">
                 <button class="bg-blue-500 text-white text-sm rounded-full hover:bg-blue-200 py-2 px-4 text-center float-right">
                     <i class="fas fa-plus-circle mr-2"></i>
                     Add New
                 </button>
-            </a> --}}
+            </a>
+
+            <div class="flex mx-6 float-right ">
+                <div class="block rounded-md mr-2 bg-blue-500  p-2 hover:bg-indigo-500 hover:text-white">
+                    
+                    <button class="font-bold text-white pl-2 hover:text-black text-sm">
+                        <a href="{{ route('tickets.index')}}">
+                           All
+                        </a>
+                        </button>
+                </div>
+        
+                <div class="block rounded-md mr-2 bg-blue-500 shadow-lg p-2 hover:bg-indigo-500 hover:text-white">
+                    
+                    <button class="font-bold text-white text-sm pl-2 hover:text-black">
+                        <a href="{{ route('ticket.today') }}">
+                           Today
+                        </a>
+                        </button>
+                </div>
+        
+                <div class="block rounded-md mr-2 bg-blue-500 shadow-lg p-2 hover:bg-indigo-500 hover:text-white">
+                    
+                    <button class="font-bold text-white text-sm pl-2 hover:text-black">
+                        <a href="{{ route('ticket.domestic') }}">
+                            Domestic
+                        </a>
+                        </button>
+                </div>
+        
+                <div class="block rounded-md mr-2 bg-blue-500 shadow-lg p-2 hover:bg-indigo-500 hover:text-white">
+                    
+                    <button class="font-bold text-white text-sm pl-2 hover:text-black">
+                        <a href="{{ route('ticket.international') }}">
+                            International
+                        </a>
+                        </button>
+                </div>
+        
+        
+                
+                </div>
+        
+                
+            </div>
         </div> 
     </div>
     
@@ -25,22 +69,34 @@
                         Id
                     </th>
                     <th scope="col" class="py-3 px-6">
-                        User
+                        Ticket No
                     </th>
                     <th scope="col" class="py-3 px-6">
                         Client
                     </th>
                     <th scope="col" class="py-3 px-6">
-                        Department
+                        Airline Title
                     </th>
                     <th scope="col" class="py-3 px-6">
-                        Purpose
+                        Airline Type
                     </th>
                     <th scope="col" class="py-3 px-6">
-                        Remarks
+                        Date
                     </th>
                     <th scope="col" class="py-3 px-6">
-                        Status
+                        Time
+                    </th>
+                    <th scope="col" class="py-3 px-6">
+                        Airlinepnr
+                    </th>
+                    <th scope="col" class="py-3 px-6">
+                        Destination
+                    </th>
+                    <th scope="col" class="py-3 px-6">
+                        Departure
+                    </th>
+                    <th scope="col" class="py-3 px-6">
+                        Description
                     </th>
                     <th scope="col" class="py-3 px-6">
                         Action
@@ -48,71 +104,61 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($task as $task )
+                @foreach ($ticket as $ticket )
                 <tr>
                     <td>
-                        {{ $task->id }}
+                        {{ $ticket->id }}
+                    </td>
+                    <td>
+                        {{ $ticket->ticket_no }}
                     </td>
                
                     <td>
-                        {{ $task->user->name }}
+                        {{ $ticket->client->name }}
                     </td>
                     <td>
-                        {{ $task->client->name }}
+                        {{ $ticket->airline->title }}
                     </td>
                     <td>
-                        {{ $task->department->title }}
+                        {{ $ticket->airline->type }}
                     </td>
                     <td>
-                        {{ $task->purpose->name }}
+                        {{ $ticket->date }}
                     </td>
                     <td>
-                        {{ $task->remarks }}
+                        {{ $ticket->time }}
                     </td>
                     <td>
-                        {{ $task->status }}
+                        {{ $ticket->airlinepnr}}
+                    </td>
+                    <td>
+                        {{ $ticket->destination}}
+                    </td>
+                    <td>
+                        {{ $ticket->departure}}
+                    </td>
+                    <td>
+                        {{ $ticket->description }}
                     </td>
 
 
     
                     <td>
                         <button>
-                            <a href="{{ route('task.show',$task) }}">
+                            <a href="{{ route('tickets.show',$ticket) }}">
                                 <i class="fa-sharp fa-solid fa-eye y-2 px-2 text-blue-500 text-xl "></i>
                             </a>
                         </button> 
                         <button>
-                            <a href="{{ route('task.edit',$task) }}">
+                            <a href="{{ route('tickets.edit',$ticket) }}">
                                 <i class="fa-sharp fa-solid fa-pen-to-square y-2 px-2 text-green-500 text-xl"></i>
                             </a>
                         </button> 
-    
-                       
-    
-                        <button onclick="show({{$task->id}})">
+                        <button onclick="show({{$ticket->id}})">
                             
                             <i class="fa-sharp fa-solid fa-trash y-2 px-2 text-red-500 text-xl"></i>
                             </a>
                         </button>
-                        <div class="flex flex-justify gap-2">
-                            <form action="{{ route('task.pending',$task->id) }}" method="post">
-                                @csrf
-                                <input type="hidden" id="pending" name="pending">
-                                <button type="submit" class="py-2 px-4 bg-blue-400 justify-center ">Pending</button>
-                            </form>
-                            <form action="{{ route('task.complete',$task->id) }}" method="post">
-                                @csrf
-                                <input type="hidden" id="complete" name="complete">
-                                <button type="submit" class="py-2 px-4 bg-blue-400 justify-center ">complete</button>
-                            </form>
-
-                            <form action="{{ route('task.processing',$task->id) }}" method="post">
-                                @csrf
-                                <input type="hidden" id="processing" name="processing">
-                                <button type="submit" class="py-2 px-4 bg-blue-400 justify-center ">Processing</button>
-                            </form>
-                        </div>
-                       
                        
                         
                     {{-- </form> --}}
@@ -133,9 +179,9 @@
         
                     <div class="flex text-center px-40 gap-5 justify-center">
                         <button class="py-2 px-4 bg-blue-400 justify-center mr-5" onclick="hide()">No</button>
-                            <form action="{{route('task.delete')}}" method="post">
+                            <form action="{{route('ticket.delete')}}" method="post">
                                 @csrf
-                                <input type="hidden" value="1" id="task-id" name="task-id">
+                                <input type="hidden" value="1" id="ticket-id" name="ticket-id">
                                 <button type="submit" class="py-2 px-4 bg-blue-400 justify-center ">yes</button>
                             </form>
                     </div>
@@ -169,7 +215,7 @@
 </script>
 <script>
    function show($id) {
-        document.getElementById('task-id').value = $id;
+        document.getElementById('ticket-id').value = $id;
         $('.deleteModal').removeClass('hidden');
 
     }
@@ -177,8 +223,8 @@
         $('.deleteModal').addClass('hidden');
     }
 
-    function deleteTask() {
-        $id = document.getElementById('task-id').value; 
+    function deleteTicket() {
+        $id = document.getElementById('ticket-id').value; 
         hide();
 
     }

@@ -40,6 +40,13 @@
         <x-input id="phoneno" class="block mt-1 w-full" type="text" name="phoneno" :value="old('phoneno')" required autofocus />
     </div>
 
+    <div>
+        <x-label for="dob" :value="__('dob')" />
+
+        <x-input id="dob" class="block mt-1 w-full" type="date" name="dob" :value="old('dob')" required autofocus />
+    </div>
+
+
 
 <div class="pt-3 ">
     <button class="bg-blue-500 py-2 px-4 rounded-md ">Save</button>
