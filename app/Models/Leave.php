@@ -13,6 +13,7 @@ class Leave extends Model
         'date',
         'subject',
         'image',
+        'description',
         'status',
         'user_id',
         'remarks',

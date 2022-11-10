@@ -60,7 +60,8 @@ class AttendenceController extends Controller
 
         $attendence->save();
 
-        return redirect()->back();
+        return redirect()->back()
+            ->with('success', 'clocked In sucessfully');
     }
 
     /**
@@ -118,7 +119,8 @@ class AttendenceController extends Controller
 
         $attendence->save();
 
-        return redirect()->back();
+        return redirect()->back()
+            ->with('success', 'clocked out sucessfully');;
     }
 
     /**
@@ -130,5 +132,10 @@ class AttendenceController extends Controller
     public function destroy(Attendence $attendence)
     {
         //
+    }
+    public function month()
+    {
+        $monthattendences = Attendence::whereYear('date', Carbon::now()->year)->whereMonth('date', Carbon::now()->month)->get();
+        return view("attendence.month", compact("monthattendences"));
     }
 }

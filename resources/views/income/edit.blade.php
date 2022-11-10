@@ -1,7 +1,7 @@
 @extends('layouts.sidebar')
 @section('main')
 <div class="w-full">
-    <div class="text-black font-bold py-3 px-5">Update Income
+    <div class="text-black font-bold py-3 px-5">Update Incomes
         <a href="{{ route('income.index') }}">
         <button class="bg-blue-600 text-white py-2 px-4 font-bold rounded-full float-right">
             Go Back
@@ -13,6 +13,10 @@
 <form method="POST" action="{{ route('income.update',$income) }}">
     @csrf
     @method('put')
+
+    @if ($errors->any())
+    {{ $errors }}
+    @endif
    
 
     <!-- Name -->

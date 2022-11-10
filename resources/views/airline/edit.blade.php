@@ -1,7 +1,7 @@
 @extends('layouts.sidebar')
 @section('main')
 <div class="w-full">
-    <div class="text-black font-bold py-3 px-5">Add New Airlines
+    <div class="text-black font-bold py-3 px-5">Update Airlines
         <a href="{{ route('airline.index') }}">
         <button class="bg-blue-600 text-white py-2 px-4 font-bold rounded-full float-right">
             Go Back
@@ -13,6 +13,10 @@
 <form method="POST" action="{{ route('airline.update',$airline) }}">
     @csrf
     @method('put')
+
+    @if ($errors->any())
+    {{ $errors }}
+    @endif
    
 
     <!-- Name -->
@@ -26,7 +30,7 @@
         <select name="type" id="type" class="block mt-1 w-full" >
             {{-- <option value="admin"  @if($user->role=='admin') selected @endif>Admin</option> --}}
             {{-- <option value="user"  @if($user->role=='user') selected @endif>User</option> --}}
-            @foreach (\App\Models\Airline::CRUD_ as $type )
+            @foreach (\App\Models\Airline::CRUD_TYPE as $type )
                 <option value="{{ $type }}" @if($airline->type==$type) selected @endif>
                     {{ $type }}
                 </option>

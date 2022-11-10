@@ -13,6 +13,10 @@
 <form method="POST" action="{{ route('income.store') }}">
     @csrf
 
+    @if ($errors->any())
+    {{ $errors }}
+    @endif
+
     <!-- Name -->
     <div>
         <x-label for="particulars" :value="__('Particulars')" />
@@ -22,12 +26,12 @@
     <div>
         <x-label for="amount" :value="__('amount')" />
 
-        <x-input id="amount" class="block mt-1 w-full" type="text" name="amount" :value="old('amount')" required autofocus />
+        <x-input id="amount" class="block mt-1 w-full" type="number" name="amount" :value="old('amount')" required autofocus />
     </div>
     <div>
         <x-label for="remarks" :value="__('remarks')" />
 
-        <x-input id="remarks" class="block mt-1 w-full" type="text" name="remarks" :value="old('remarks')" required autofocus />
+        <x-input id="remarks" class="block mt-1 w-full" type="text" name="remarks" :value="old('remarks')" />
     </div>
     <div>
         <x-label for="date" :value="__('date')" />

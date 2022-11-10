@@ -33,7 +33,7 @@ use App\Http\Controllers\TicketController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth/login');
 });
 
 
@@ -53,6 +53,8 @@ Route::resource('airline', AirlineController::class);
 Route::post('/airline/delete', [AirlineController::class, 'deleteAirline'])->name('airline.delete');
 
 Route::resource('attendence', AttendenceController::class);
+Route::get('/attendences/months', [AttendenceController::class, 'month'])->name('attendence.month');
+
 
 Route::get('admin/attendance', [AdminController::class, 'index'])->name('admin.attendence');
 Route::get('admin/attendance/{id}', [AdminController::class, 'show'])->name('admin.attendence.show');
@@ -93,5 +95,6 @@ Route::get('admin/leaves/{id}', [\App\Http\Controllers\Admin\LeaveController::cl
 
 
 Route::resource('leave', LeaveController::class);
+Route::post('/leave/delete', [LeaveController::class, 'deleteLeave'])->name('leave.delete');
 
 require __DIR__ . '/auth.php';

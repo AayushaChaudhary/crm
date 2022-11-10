@@ -19,9 +19,10 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('status')->default('active');
             $table->string('dob');
-            $table->string('entry_time');
-            $table->string('exit_time');
+            $table->time('entry_time');
+            $table->time('exit_time');
             $table->string('role')->default('user');
             $table->string('address');
             $table->string('phoneno');

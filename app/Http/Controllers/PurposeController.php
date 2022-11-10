@@ -37,7 +37,7 @@ class PurposeController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => ['required'],
+            'name' => ['required', 'regex:/^[a-zA-z ]{1,}$/'],
 
         ]);
 
@@ -57,7 +57,7 @@ class PurposeController extends Controller
      */
     public function show(Purpose $purpose)
     {
-        //
+        return view('purpose.show', compact('purpose'));
     }
 
     /**
@@ -81,7 +81,7 @@ class PurposeController extends Controller
     public function update(Request $request, Purpose $purpose)
     {
         $request->validate([
-            'name' => ['required'],
+            'name' => ['required', 'regex:/^[a-zA-z ]{1,}$/'],
         ]);
 
         $purpose->update([

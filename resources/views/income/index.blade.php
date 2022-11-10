@@ -14,8 +14,36 @@
                     Add New
                 </button>
             </a>
+            
         </div> 
+        <div class="flex flex-col flex-wrap gap-5 m-6 md:flex-row">
+            <div class="flex h-20 p-2 bg-white border-red-100 rounded-md shadow-xl w-70">
+                <span class="items-center px-5 py-5 text-white bg-blue-500 rounded-md"><i class="fa-sharp fa-solid fa-coins"></i></span>
+                <div class="mx-4  ">
+                <div class="antialiased font-bold text-gray-600 ">Total Incomes</div>
+                <div class="text-sm text-gray-600">Rs {{ $total }}</div>
+                </div>
+            </div>
+
+            <div class="flex h-20 p-2 bg-white border-red-100 rounded-md shadow-xl w-70">
+                <span class="items-center px-5 py-5 text-white bg-blue-500 rounded-md"><i class="fa-sharp fa-solid fa-receipt"></i></span>
+                <div class="mx-4  ">
+                <div class="antialiased font-bold text-gray-600 ">Today Incomes</div>
+                <div class="text-sm text-gray-600">Rs{{ $dincomes }}</div>
+                </div>
+            </div>
+
+            <div class="flex h-20 p-2 bg-white border-red-100 rounded-md shadow-xl w-70">
+                <span class="items-center px-5 py-5 text-white bg-blue-500 rounded-md"><i class="fa-sharp fa-solid fa-credit-card"></i></span>
+                <div class="mx-4  ">
+                <div class="antialiased font-bold text-gray-600 ">Monthly Incomes</div>
+                <div class="text-sm text-gray-600">Rs{{ $mincomes }}</div>
+                </div>
+            </div>
+        </div>
     </div>
+
+    
     
     <div class="overflow-x-auto relative w-100%">
         <table class="w-full m-6 shadow-lg text-sm text-left text-gray-500 dark:text-gray-400" id="myTable">

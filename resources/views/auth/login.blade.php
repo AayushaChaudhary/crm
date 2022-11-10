@@ -7,11 +7,17 @@
         <div class="grid h-full md:grid-cols-2">
             <div class="bg-white mt-[50%] -translate-y-[40%] border-shadow-md">
                 <div class="mx-6 py-5">
+
+                     <!-- validation error-->
+                     <x-auth-validation-errors class="mb-4" :errors="$errors" />
+
                     <h1 class="text-3xl font-bold text-center">Welcome back</h1>
                     <p class="text-sm font-semibold text-center text-black mb-3">Please enter your details<p>
                     <div class="flex justify-center w-6/12 mx-auto">
                         <form  class="w-full" method="POST" action="{{ route('login') }}">
                             @csrf
+                                
+                            
 
                             <!-- Email Address -->
                             <div>

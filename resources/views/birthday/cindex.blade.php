@@ -45,7 +45,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($upcomings as $client )
+                @foreach ($upcommings as $client )
                 <tr>
                     <td>
                         {{ $client->id }}

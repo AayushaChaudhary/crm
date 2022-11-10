@@ -71,9 +71,9 @@
                     </td>
                     <td>
                         <button type="submit" onclick="popup('{{ $leave->id }}')">
-                            <i class="fas fa-check mr-2">Approved</i></button>
+                            <i class="fa-sharp fa-solid fa-circle-check text-green-600 text-xl"></i></button>
                         <button type="submit" onclick="popupp('{{ $leave->id }}')">
-                            <i class="fas fa-check mr-2">Declined</i></button>
+                            <i class="fa-sharp fa-solid fa-circle-xmark y-2 px-2 text-red-600 text-xl"></i></button>
                         </button>
                         <button>
                             <a href="{{ route('admin.leaves.show',$leave->id) }}">

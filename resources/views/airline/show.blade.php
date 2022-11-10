@@ -7,8 +7,8 @@
 @section('main')
 
 <div class="w-full">
-    <div class="text-black text-2xl font-bold py-8 px-5 w-full">Client Details
-        <a href="{{ route('client.index') }}">
+    <div class="text-black text-2xl font-bold py-8 px-5 w-full">Airline Details
+        <a href="{{ route('airline.index') }}">
             <button class="bg-gray-700 text-white text-xl rounded-full hover:bg-gray-600 font-bold py-2 px-4 text-center absolute right-20">
                 <i class="fa-solid fa-arrow-left pr-2"></i>Back</button></a>
     </div>
@@ -22,49 +22,26 @@
                     ID
                 </th>
                 <td>
-                    {{ $client->id }}
+                    {{ $airline->id }}
                 </td>
             </tr>
             <tr>
                 <th scope="col" class="py-3 px-6">
-                    Name
+                    Title
                 </th>
                 <td>
-                    {{ $client->name }}
+                    {{ $airline->title }}
                 </td>
             </tr>
             <tr>
                 <th scope="col" class="py-3 px-6">
-                    Address
+                    Type
                 </th>
                 <td>
-                    {{ $client->address }}
+                    {{ $airline->type }}
                 </td>
             </tr>
-            <tr>
-                <th scope="col" class="py-3 px-6">
-                    Email
-                </th>
-                <td>
-                    {{ $client->email }}
-                </td>
-            </tr>
-            <tr>
-                <th scope="col" class="py-3 px-6">
-                    Phoneno
-                </th>
-                <td>
-                    {{ $client->phoneno }}
-                </td>
-            </tr>
-            <tr>
-                <th scope="col" class="py-3 px-6">
-                    Assigned To
-                </th>
-                <td>
-                    {{ $client->user->name }}
-                </td>
-            </tr>
+            
            
         </thead>
     </table>

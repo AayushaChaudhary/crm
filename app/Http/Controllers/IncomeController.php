@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Income;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class IncomeController extends Controller
@@ -15,7 +16,10 @@ class IncomeController extends Controller
     public function index()
     {
         $income = Income::all();
-        return view('income.index', compact('income'));
+        $total = Income::sum('amount');
+        $dincomes = Income::whereDate('date', Carbon::today())->sum('amount');
+        $mincomes = Income::whereYear('date', Carbon::now()->year)->whereMonth('date', Carbon::now())->sum('amount');
+        return view('income.index', compact('income', 'total', 'dincomes', 'mincomes'));
     }
 
     /**
@@ -39,7 +43,7 @@ class IncomeController extends Controller
         $data = $request->validate([
             'particulars' => ['required'],
             'amount' => ['required'],
-            'remarks' => ['required'],
+            'remarks' => ['nullable'],
             'date' => ['required'],
 
         ]);
@@ -58,7 +62,7 @@ class IncomeController extends Controller
      */
     public function show(Income $income)
     {
-        //
+        return view('income.show', compact('income'));
     }
 
     /**
@@ -84,7 +88,7 @@ class IncomeController extends Controller
         $data =  $request->validate([
             'particulars' => ['required'],
             'amount' => ['required'],
-            'remarks' => ['required'],
+            'remarks' => ['nullable'],
             'date' => ['required'],
         ]);
 

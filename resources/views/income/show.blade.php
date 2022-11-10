@@ -7,8 +7,8 @@
 @section('main')
 
 <div class="w-full">
-    <div class="text-black text-2xl font-bold py-8 px-5 w-full">Client Details
-        <a href="{{ route('client.index') }}">
+    <div class="text-black text-2xl font-bold py-8 px-5 w-full">Income Details
+        <a href="{{ route('income.index') }}">
             <button class="bg-gray-700 text-white text-xl rounded-full hover:bg-gray-600 font-bold py-2 px-4 text-center absolute right-20">
                 <i class="fa-solid fa-arrow-left pr-2"></i>Back</button></a>
     </div>
@@ -22,49 +22,42 @@
                     ID
                 </th>
                 <td>
-                    {{ $client->id }}
+                    {{ $income->id }}
                 </td>
             </tr>
             <tr>
                 <th scope="col" class="py-3 px-6">
-                    Name
+                    Particulars
                 </th>
                 <td>
-                    {{ $client->name }}
+                    {{ $income->particulars }}
                 </td>
             </tr>
             <tr>
                 <th scope="col" class="py-3 px-6">
-                    Address
+                    Amount
                 </th>
                 <td>
-                    {{ $client->address }}
+                    {{ $income->amount }}
                 </td>
             </tr>
             <tr>
                 <th scope="col" class="py-3 px-6">
-                    Email
+                    Remarks
                 </th>
                 <td>
-                    {{ $client->email }}
+                    {{ $income->remarks }}
                 </td>
             </tr>
             <tr>
                 <th scope="col" class="py-3 px-6">
-                    Phoneno
+                    Date
                 </th>
                 <td>
-                    {{ $client->phoneno }}
+                    {{ $income->date }}
                 </td>
             </tr>
-            <tr>
-                <th scope="col" class="py-3 px-6">
-                    Assigned To
-                </th>
-                <td>
-                    {{ $client->user->name }}
-                </td>
-            </tr>
+           
            
         </thead>
     </table>

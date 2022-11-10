@@ -73,6 +73,28 @@
         </table>
 
          <!-- Delete -->
+         <div class="hidden deleteModal backdrop-blur-lg fixed top-0 left-0 right-0 bottom-0 p-2 bg-gray-800 bg-opacity-25 border-red-100 rounded-md shadow-xl w-full flex-center">
+            <div class="flex justify-center">
+                <div class="bg-white shadow-lg rounded-md w-96 h-96 mt-[10%]">
+                    <div class="text-center text-black text-xl py-10 px-10 mt-2">
+                       <h1 class="font-bold"> Are you sure?</h1>
+                    </div>
+        
+                    <div class="flex text-center px-40 gap-5 justify-center">
+                        <button class="py-2 px-4 bg-blue-400 justify-center mr-5" onclick="hide()">No</button>
+                            <form action="{{route('department.delete')}}" method="post">
+                                @csrf
+                                <input type="hidden" value="1" id="department-id" name="department-id">
+                                <button type="submit" class="py-2 px-4 bg-blue-400 justify-center ">yes</button>
+                            </form>
+                    </div>
+                </div>
+                
+            </div>
+            
+                
+            </div>
+        </div>
 
 </div>
 

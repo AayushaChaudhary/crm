@@ -4,18 +4,16 @@
 @endsection
 
 @section('main')
-<x-alert />
+
 <div class="shadow-lg">
     <div class="w-full">
-        <div class="text-black text-xl font-bold py-5 px-8">Airlines Informations
-            @if(auth()->user()->role ==="Admin" || auth()->user()->role ==="Desk")
-            <a href="{{ route('airline.create') }}">
+        <div class="text-black text-xl font-bold py-5 px-8">Attendences Informations
+            {{-- <a href="{{ route('attendence.create') }}">
                 <button class="bg-blue-500 text-white text-sm rounded-full hover:bg-blue-200 py-2 px-4 text-center float-right">
                     <i class="fas fa-plus-circle mr-2"></i>
                     Add New
                 </button>
-            </a>
-            @endif
+            </a> --}}
         </div> 
     </div>
     
@@ -24,61 +22,84 @@
             <thead class="text-xs text-gray-700 uppercase bg-blue-500 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                     <th scope="col" class="py-3 px-6">
-                        Id
+                        S.N
                     </th>
                     <th scope="col" class="py-3 px-6">
-                        Title
+                        Clock in
                     </th>
                     <th scope="col" class="py-3 px-6">
-                        Type
+                        clock out
                     </th>
-                    @if(auth()->user()->role ==="Admin" || auth()->user()->role ==="Desk")
                     <th scope="col" class="py-3 px-6">
-                        Action
+                        late entry
                     </th>
-                    @endif
+                    <th scope="col" class="py-3 px-6">
+                        Early exit
+                    </th>
+                    <th scope="col" class="py-3 px-6">
+                        Total hours
+                    </th>
+
+                    <th scope="col" class="py-3 px-6">
+                        Date
+                    </th>
                     
                 </tr>
             </thead>
             <tbody>
-                @foreach ($airline as $airline )
+                @foreach ($monthattendences as $monthattendence )
                 <tr>
                     <td>
-                        {{ $airline->id }}
-                    </td>
-               
-                    <td>
-                        {{ $airline->title }}
+                        {{ $loop->index + 1 }}
                     </td>
     
                     <td>
-                        {{ $airline->type }}
+                        {{ $monthattendence->clock_in }}
+                    </td>
+
+                    <td>
+                        {{ $monthattendence->clock_out }}
+                    </td>
+                    <td>
+                        {{ $monthattendence->late_entry }}
+                    </td>
+                    <td>
+                        {{ $monthattendence->early_exit }}
+                    </td>
+                    <td>
+                        {{ $monthattendence->total_hour }}
+                    </td>
+                    <td>
+                        {{ $monthattendence->date }}
                     </td>
                 
-                    @if(auth()->user()->role ==="Admin" || auth()->user()->role ==="Desk")
-                    <td>
-                        <button>
+                
+                
+                
+                
+                    
+                    {{-- <td>
+                        <button class="bg-blue-500 text-white font-bold py-2 px-4 rounded">
                             <a href="{{ route('airline.show',$airline) }}">
-                                <i class="fa-sharp fa-solid fa-eye y-2 px-2 text-blue-500 text-xl "></i>
+                                Show
                             </a>
                         </button> 
-                        <button>
+                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">
                             <a href="{{ route('airline.edit',$airline) }}">
-                                <i class="fa-sharp fa-solid fa-pen-to-square y-2 px-2 text-green-500 text-xl"></i>
+                                Edit
                             </a>
                         </button> 
     
                        
     
-                        <button onclick="show({{$airline->id}})">
+                        <button onclick="show({{$airline->id}})" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">
                             
-                            <i class="fa-sharp fa-solid fa-trash y-2 px-2 text-red-500 text-xl"></i>
+                                Delete
                             </a>
-                        </button> 
+                        </button>  --}}
                     {{-- </form> --}}
                         
                     </td>
-                    @endif
                 </tr>
                 @endforeach
             </tbody>
@@ -109,6 +130,7 @@
 </div>
 </div>
 
+
 </div>
 
 
@@ -126,7 +148,7 @@
     $('#myTable').DataTable();
 } );
 </script>
-<script>
+{{-- <script>
     function show($id) {
         document.getElementById('airline-id').value = $id;
         $('.deleteModal').removeClass('hidden');
@@ -142,5 +164,5 @@
 
     }
     
-</script>
+</script> --}}
 @endsection

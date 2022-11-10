@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Task;
 use App\Models\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,8 +16,21 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $client = Client::all();
-        return view('client.index', compact('client'));
+        $clients = Client::all();
+        // dd($client);
+        foreach ($clients as $client) {
+            $task = Task::where('client_id', $client->id)->latest()->first();
+            if ($task != null) {
+
+                $client->assigned = $task->user->name;
+            } else {
+                $client->assigned = "-";
+            }
+        }
+
+
+
+        return view('client.index', compact('clients'));
     }
 
     /**
@@ -38,10 +52,10 @@ class ClientController extends Controller
     public function store(Request $request)
     {
         $client = $request->validate([
-            'name' => ['required'],
+            'name' => ['required', 'regex:/^[a-zA-z ]{1,}$/'],
             'email' => ['required'],
             'address' => ['required'],
-            'phoneno' => ['required'],
+            'phoneno' => ['required', 'numeric', 'digits:10'],
             'dob' => ['required'],
         ]);
 
@@ -86,10 +100,10 @@ class ClientController extends Controller
     public function update(Request $request, Client $client)
     {
         $request->validate([
-            'name' => ['required'],
+            'name' => ['required', 'regex:/^[a-zA-z ]{1,}$/'],
             'email' => ['required'],
             'address' => ['required'],
-            'phoneno' => ['required'],
+            'phoneno' => ['required', 'numeric', 'digits:10'],
             'dob' => ['required'],
 
         ]);

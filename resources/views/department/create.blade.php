@@ -13,9 +13,9 @@
 <form method="POST" action="{{ route('department.store') }}">
     @csrf
 
-    {{-- @if($errors()->any)
-        {{$errors}}
-    @endif --}}
+    @if ($errors->any())
+    {{ $errors }}
+    @endif
     <!-- Title -->
     <div>
         <x-label for="title" :value="__('Title')" />

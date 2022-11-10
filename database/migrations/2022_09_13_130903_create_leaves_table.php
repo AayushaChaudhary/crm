@@ -18,7 +18,8 @@ return new class extends Migration
             $table->string('subject');
             $table->foreignId('user_id')->constrained();
             $table->date('date');
-            $table->string('image');
+            $table->string('image')->nullable();
+            $table->string('description');
             $table->string('status')->default('pending');
             $table->string('remarks')->nullable();
             $table->timestamps();

@@ -40,17 +40,17 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => ['required'],
+            'name' => ['required', 'regex:/^[a-zA-z ]{1,}$/'],
             'email' => ['required'],
-            'password' => ['required'],
+            'password' => ['required', 'min:8', 'confirmed'],
             'dob' => ['required'],
             'address' => ['required'],
-            'phoneno' => ['required'],
+            'phoneno' => ['required', 'numeric', 'digits:10'],
             'role' => ['required', Rule::in(User::CRUD_ROLES)],
             'post' => ['required'],
             'bloodgroup' => ['required'],
             'entry_time' => ['required'],
-            'exit_time' => ['required',]
+            'exit_time' => ['required',],
 
         ]);
 
@@ -104,14 +104,15 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $request->validate([
-            'name' => ['required'],
+            'name' => ['required', 'regex:/^[a-zA-z ]{1,}$/'],
             'email' => ['required'],
             'dob' => ['required'],
             'address' => ['required'],
-            'phoneno' => ['required'],
+            'phoneno' => ['required', 'numeric', 'digits:10'],
             'role' => ['required', Rule::in(User::CRUD_ROLES)],
             'post' => ['required'],
             'bloodgroup' => ['required'],
+            'status' => ['required'],
         ]);
         $user->update([
             'name' => $request->name,
@@ -122,6 +123,7 @@ class UserController extends Controller
             'role' => $request->role,
             'post' => $request->post,
             'bloodgroup' => $request->bloodgroup,
+            'status' => $request->status,
         ]);
 
         return redirect()->route('user.index')
@@ -145,6 +147,12 @@ class UserController extends Controller
 
         $id = $data['user-id'];
         $user = User::find($id);
+
+        if (count($user->task) > 0 || count($user->attendence) > 0 || count($user->leave) > 0) {
+            $user->update(['status' => 'Inactive']);
+            return redirect()->back()->with('error', 'This user has relation with other.!');
+        }
+
         $user->delete();
         return redirect()->back();
     }

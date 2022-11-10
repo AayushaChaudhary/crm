@@ -26,14 +26,14 @@ class BirthdayController extends Controller
     public function cindex()
     {
         $now = now();
-        $upcomings = Client::whereMonth('dob', $now->month)->whereDay('dob', '>=', $now->day)->orderBy('dob', 'ASC')->get();
+        $upcommings = Client::whereMonth('dob', $now->month)->whereDay('dob', '>=', $now->day)->orderBy('dob', 'ASC')->get();
 
-        foreach ($upcomings as $client) {
+        foreach ($upcommings as $client) {
             $today = Carbon::today();
             $dob = Carbon::parse($client->dob)->year(now()->format('y'))->format('y-m-d');
             $remainings = $today->diffInDays(Carbon::parse($dob));
             $client->remaining = $remainings;
         }
-        return view('birthday.cindex', compact('upcomings'));
+        return view('birthday.cindex', compact('upcommings'));
     }
 }

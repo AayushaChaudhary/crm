@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Expenditure;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ExpenditureController extends Controller
@@ -15,7 +16,10 @@ class ExpenditureController extends Controller
     public function index()
     {
         $expenditure = Expenditure::all();
-        return view('expenditure.index', compact('expenditure'));
+        $total = Expenditure::sum('amount');
+        $dexpenses = Expenditure::whereDate('date', Carbon::today())->sum('amount');
+        $mexpenses = Expenditure::whereYear('date', Carbon::now()->year)->whereMonth('date', Carbon::now())->sum('amount');
+        return view('expenditure.index', compact('expenditure', 'total', 'dexpenses', 'mexpenses'));
     }
 
     /**
@@ -39,7 +43,7 @@ class ExpenditureController extends Controller
         $data = $request->validate([
             'particulars' => ['required'],
             'amount' => ['required'],
-            'remarks' => ['required'],
+            'remarks' => ['nullable'],
             'date' => ['required'],
 
         ]);
@@ -58,7 +62,7 @@ class ExpenditureController extends Controller
      */
     public function show(Expenditure $expenditure)
     {
-        //
+        return view('expenditure.show', compact('expenditure'));
     }
 
     /**
@@ -84,7 +88,7 @@ class ExpenditureController extends Controller
         $data =  $request->validate([
             'particulars' => ['required'],
             'amount' => ['required'],
-            'remarks' => ['required'],
+            'remarks' => ['nullable'],
             'date' => ['required'],
         ]);
 

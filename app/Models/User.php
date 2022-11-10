@@ -14,13 +14,22 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     const CRUD_ROLES = [
-        'Admin', 'User',
+        'Admin', 'User', 'Desk',
+    ];
+
+    const CRUD_BLOODGROUP = [
+        'O+', 'O-', 'A+', 'A-', 'B+', 'B-', 'AB+', 'AB-'
+    ];
+
+    const CRUD_STATUS = [
+        'active', 'inactive',
     ];
 
     protected $fillable = [
         'name',
         'email',
         'password',
+        'status',
         'role',
         'address',
         'dob',
@@ -61,5 +70,10 @@ class User extends Authenticatable
     public function task()
     {
         return $this->hasMany(Task::class);
+    }
+
+    public function leave()
+    {
+        return $this->hasMany(Leave::class);
     }
 }

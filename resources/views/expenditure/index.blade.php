@@ -15,6 +15,33 @@
                 </button>
             </a>
         </div> 
+        <div class="flex flex-col flex-wrap gap-5 m-6 md:flex-row">
+            <div class="flex h-20 p-2 bg-white border-red-100 rounded-md shadow-xl w-70">
+                <span class="items-center px-5 py-5 text-white bg-blue-500 rounded-md"><i class="fa-sharp fa-solid fa-address-card"></i></span>
+                <div class="mx-4  ">
+                <div class="antialiased font-bold text-gray-600 ">Total Expenditures</div>
+                <div class="text-sm text-gray-600">Rs{{ $total }}</div>
+                </div>
+            </div>
+
+                <div class="flex h-20 p-2 bg-white border-red-100 rounded-md shadow-xl w-70">
+                    <span class="items-center px-5 py-5 text-white bg-blue-500 rounded-md"><i class="fa-sharp fa-solid fa-calendar-week"></i></span>
+                    <div class="mx-4  ">
+                    <div class="antialiased font-bold text-gray-600 ">Today Expenditures</div>
+                    <div class="text-sm text-gray-600">Rs{{ $dexpenses }}</div>
+                    </div>
+                </div>
+
+                <div class="flex h-20 p-2 bg-white border-red-100 rounded-md shadow-xl w-70">
+                    <span class="items-center px-5 py-5 text-white bg-blue-500 rounded-md"><i class="fa-solid fa-eye"></i></span>
+                    <div class="mx-4  ">
+                    <div class="antialiased font-bold text-gray-600 ">Monthly Expenditures</div>
+                    <div class="text-sm text-gray-600">Rs{{ $mexpenses }}</div>
+                    </div>
+                </div>
+            
+
+        </div>
     </div>
     
     <div class="overflow-x-auto relative w-100%">

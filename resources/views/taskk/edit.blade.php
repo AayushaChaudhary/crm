@@ -13,6 +13,10 @@
 <form method="POST" action="{{ route('task.update',$task) }}">
     @csrf
     @method('put')
+
+    @if ($errors->any())
+    {{ $errors }}
+    @endif
     <div>
         <label for="user_id">User</label>
 

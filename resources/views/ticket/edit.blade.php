@@ -14,6 +14,10 @@
     @csrf
     @method('put')
 
+    @if ($errors->any())
+    {{ $errors }}
+    @endif
+
     <div class="mt-4">
         <x-label for="ticket_no" :value="__('ticket_no')" />
 

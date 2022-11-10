@@ -1,7 +1,7 @@
 @extends('layouts.sidebar')
 @section('main')
 <div class="w-full">
-    <div class="text-black font-bold py-3 px-5">Ticket Create
+    <div class="text-black font-bold py-3 px-5">Add New Ticket
         <a href="{{ route('tickets.index') }}">
         <button class="bg-blue-600 text-white py-2 px-4 font-bold rounded-full float-right">
             Go Back
@@ -43,17 +43,16 @@
         </select>
     </div>
 
-    <div class="mt-4">
-        <label for="airline_type">Airline Type</label>
-        <select name="airline_type" id="airline_type" class="block mt-1 w-full" required autofocus>
-         <option value="">Choose one...</option>
-          @foreach ($airlines as $airline)
-         <option value="{{ $airline->type }}">{{ $airline->type }}</option>
-       
-          @endforeach
+    <div>
+        <x-label for="airline_type" :value="__('Airline Type')" />
+        <select name="airline_type" id="airline_type" class="block mt-1 w-full">
+            <option value=""selected disabled>Choose One..</option>
+            <option value="domestic">Domestic</option>
+            <option value="international">International</option>
+        
+            
         </select>
     </div>
-
    
 
 

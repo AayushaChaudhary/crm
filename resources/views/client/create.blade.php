@@ -13,6 +13,10 @@
 <form method="POST" action="{{ route('client.store') }}">
     @csrf
 
+    @if ($errors->any())
+    {{ $errors }}
+    @endif
+
     <!-- Name -->
     <div>
         <x-label for="name" :value="__('Name')" />

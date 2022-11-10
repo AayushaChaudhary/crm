@@ -8,12 +8,14 @@
 <div class="shadow-lg">
     <div class="w-full">
         <div class="text-black text-xl font-bold py-5 px-8">Purpose Informations
+            @if(auth()->user()->role ==="Admin" || auth()->user()->role ==="Desk")
             <a href="{{ route('purpose.create') }}">
                 <button class="bg-blue-500 text-white text-sm rounded-full hover:bg-blue-200 py-2 px-4 text-center float-right">
                     <i class="fas fa-plus-circle mr-2"></i>
                     Add New
                 </button>
             </a>
+            @endif
         </div> 
     </div>
     
@@ -27,9 +29,11 @@
                     <th scope="col" class="py-3 px-6">
                         Name
                     </th>
+                    @if(auth()->user()->role ==="Admin" || auth()->user()->role ==="Desk")
                     <th scope="col" class="py-3 px-6">
                         Action
                     </th>
+                    @endif
                 </tr>
             </thead>
             <tbody>
@@ -42,10 +46,8 @@
                     <td>
                         {{ $purpose->name }}
                     </td>
-    
 
-
-    
+                    @if(auth()->user()->role ==="Admin" || auth()->user()->role ==="Desk")
                     <td>
                         <button>
                             <a href="{{ route('purpose.show',$purpose) }}">
@@ -68,6 +70,7 @@
                     {{-- </form> --}}
                         
                     </td>
+                    @endif
                 </tr>
                 @endforeach
             </tbody>

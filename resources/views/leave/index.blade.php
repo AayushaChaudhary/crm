@@ -34,6 +34,9 @@
                         Image
                     </th>
                     <th scope="col" class="py-3 px-6">
+                        Description
+                    </th>
+                    <th scope="col" class="py-3 px-6">
                         Status
                     </th> 
 
@@ -62,6 +65,10 @@
                         <img src="/storage/{{ $leave->image}}" class="h-4">
                     </td>
                     <td>
+                        {!! $leave->description !!}
+                    </td>
+    
+                    <td>
                         {{ $leave->status }}
                     </td>
     
@@ -69,24 +76,26 @@
                 
                     
                     <td>
-                        {{-- <button class="bg-blue-500 text-white font-bold py-2 px-4 rounded">
+                        <button>
                             <a href="{{ route('leave.show',$leave) }}">
-                                Show
+                                <i class="fa-sharp fa-solid fa-eye y-2 px-2 text-blue-500 text-xl "></i>
                             </a>
-                        </button>  --}}
+                        </button> 
+                        @if ($leave->status !="approved" && $leave->status !="declined")
                         <button>
                             <a href="{{ route('leave.edit',$leave) }}">
                                 <i class="fa-sharp fa-solid fa-pen-to-square y-2 px-2 text-green-500 text-xl"></i>
                             </a>
                         </button> 
-    
-                       
-    
-                        {{-- <button onclick="show({{$airline->id}})" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">
+                        @endif
+
+                        @if ($leave->status !="approved" && $leave->status !="declined")
+                        <button onclick="show({{$leave->id}})">
                             
-                                Delete
+                            <i class="fa-sharp fa-solid fa-trash y-2 px-2 text-red-500 text-xl"></i>
                             </a>
-                        </button>  --}}
+                        </button> 
+                        @endif
                     {{-- </form> --}}
                         
                     {{-- </td> --}}
@@ -105,9 +114,9 @@
 
             <div class="flex text-center px-40 gap-5 justify-center">
                 <button class="py-2 px-4 bg-blue-400 justify-center mr-5" onclick="hide()">No</button>
-                    <form action="{{route('airline.delete')}}" method="post">
+                    <form action="{{route('leave.delete')}}" method="post">
                         @csrf
-                        <input type="hidden" value="1" id="airline-id" name="airline-id">
+                        <input type="hidden" value="1" id="leave-id" name="leave-id">
                         <button type="submit" class="py-2 px-4 bg-blue-400 justify-center ">yes</button>
                     </form>
             </div>
@@ -140,7 +149,7 @@
 </script>
 <script>
     function show($id) {
-        document.getElementById('airline-id').value = $id;
+        document.getElementById('leave-id').value = $id;
         $('.deleteModal').removeClass('hidden');
 
     }
@@ -148,8 +157,8 @@
         $('.deleteModal').addClass('hidden');
     }
 
-    function deleteAirline() {
-        $id = document.getElementById('airline-id').value; 
+    function deleteLeave() {
+        $id = document.getElementById('leave-id').value; 
         hide();
 
     }

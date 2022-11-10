@@ -120,7 +120,7 @@
                         {{ $ticket->airline->title }}
                     </td>
                     <td>
-                        {{ $ticket->airline->type }}
+                        {{ $ticket->airline_type }}
                     </td>
                     <td>
                         {{ $ticket->date }}
@@ -145,7 +145,7 @@
     
                     <td>
                         <button>
-                            <a href="{{ route('tickets.show',$ticket) }}">
+                            <a href="{{ route('tickets.show',$ticket) }}" title="SHOW">
                                 <i class="fa-sharp fa-solid fa-eye y-2 px-2 text-blue-500 text-xl "></i>
                             </a>
                         </button> 

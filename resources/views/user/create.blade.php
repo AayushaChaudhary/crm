@@ -13,6 +13,10 @@
 <form method="POST" action="{{ route('user.store') }}">
     @csrf
 
+    @if ($errors->any())
+    {{ $errors }}
+    @endif
+
     <!-- Name -->
     <div>
         <x-label for="name" :value="__('Name')" />
@@ -36,6 +40,14 @@
                         name="password"
                         required autocomplete="new-password" />
     </div>
+    <!--confirm password -->
+    <div class="mt-4">
+        <x-label for="password_confirmation" :value="__('Confirm Password')" />
+
+        <x-input id="password_confirmation" class="block mt-1 w-full"
+                        type="password"
+                        name="password_confirmation" required />
+    </div>
 
     <div>
         <x-label for="dob" :value="__('dob')" />
@@ -54,13 +66,13 @@
     <div>
         <x-label for="entry_time" :value="__('entry_time')" />
 
-        <x-input id="entry_time" class="block mt-1 w-full" type="text" name="entry_time" :value="old('entry_time')" required autofocus />
+        <x-input id="entry_time" class="block mt-1 w-full" type="time" name="entry_time" :value="old('entry_time')" required autofocus />
     </div>
 
     <div>
         <x-label for="exit_time" :value="__('exit_time')" />
 
-        <x-input id="exit_time" class="block mt-1 w-full" type="text" name="exit_time" :value="old('exit_time')" required autofocus />
+        <x-input id="exit_time" class="block mt-1 w-full" type="time" name="exit_time" :value="old('exit_time')" required autofocus />
     </div>
 
     <div>
@@ -88,8 +100,19 @@
 
     <div>
         <x-label for="bloodgroup" :value="__('bloodgroup')" />
-
-        <x-input id="bloodgroup" class="block mt-1 w-full" type="text" name="bloodgroup" :value="old('bloodgroup')" required autofocus />
+        <select name="bloodgroup" id="bloodgroup" class="block mt-1 w-full">
+            <option value=""selected disabled>Choose One..</option>
+            <option value="O+">O+</option>
+            <option value="O-">O-</option>
+            <option value="A+">A+</option>
+            <option value="A-">A-</option>
+            <option value="B+">B+</option>
+            <option value="B-">B-</option>
+            <option value="AB+">AB+</option>
+            <option value="AB-">AB-</option>
+        
+            
+        </select>
     </div>
 
     

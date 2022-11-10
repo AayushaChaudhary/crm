@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Models\Leave;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class LeaveController extends Controller
 {
@@ -41,7 +42,8 @@ class LeaveController extends Controller
 
         $data = $request->validate([
             'subject' => ['required'],
-            'image' => ['required', 'mimes:png,jpg,gif'],
+            'image' => ['mimes:png,jpg,gif'],
+            'description' => ['required'],
         ]);
 
         $data["date"] = Carbon::now()->format('y-m-d');
@@ -70,7 +72,7 @@ class LeaveController extends Controller
      */
     public function show(Leave $leave)
     {
-        //
+        return view('leave.show', compact('leave'));
     }
 
     /**
@@ -93,13 +95,27 @@ class LeaveController extends Controller
      */
     public function update(Request $request, Leave $leave)
     {
-        $request->validate([
+
+        $data = $request->validate([
             'subject' => ['required'],
+            'image' => ['image', 'mimes:png,jpg,gif,jpeg'],
+            'description' => ['required'],
         ]);
 
-        $leave->update([
-            'subject' => $request->subject,
-        ]);
+        if ($request->file('image')) {
+            $ext = $request->file('image')->extension();
+            $name = Str::random(20);
+            $path = $name . "." . $ext;
+            $request->file('image')->storeAs('public/images', $path);
+            $data['image'] = "images/" . $path;
+            if ($leave->image) {
+
+                Storage::delete($leave->image);
+            }
+        }
+
+
+        $leave->update($data);
         return redirect()->route('leave.index')
             ->with('success', 'leave updated sucessfully');
     }
@@ -113,5 +129,16 @@ class LeaveController extends Controller
     public function destroy(Leave $leave)
     {
         //
+    }
+    public function deleteLeave(Request $request)
+    {
+        $data = $request->validate([
+            'leave-id' => 'required'
+        ]);
+
+        $id = $data['leave-id'];
+        $leave = Leave::find($id);
+        $leave->delete();
+        return redirect()->back();
     }
 }

@@ -1,6 +1,6 @@
 @extends('layouts.sidebar')
 @section('main')
-<x-alert />
+{{-- <x-alert /> --}}
 <div class="w-full">
     <div class="text-black font-bold py-3 px-5">Add New airlines
         <a href="{{ route('airline.index') }}">
@@ -14,14 +14,22 @@
 <form method="POST" action="{{ route('airline.store') }}">
     @csrf
 
-    {{-- @if($errors()->any)
-        {{$errors}}
-    @endif --}}
+    @if ($errors->any())
+    {{ $errors }}
+    @endif
+
+
+   
     <!-- Title -->
     <div>
         <x-label for="title" :value="__('Title')" />
 
-        <x-input id="title" class="block mt-1 w-full" type="text" name="title" :value="old('title')" required autofocus />
+        <x-input id="title" class="block mt-1 w-full" type="text" name="title" :value="old('title')" />
+        <div class="text-red-600">
+            @error('title')
+            {{ $message }}
+        @enderror
+        </div>
     </div>
 
     <div>

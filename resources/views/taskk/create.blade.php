@@ -1,7 +1,7 @@
 @extends('layouts.sidebar')
 @section('main')
 <div class="w-full">
-    <div class="text-black font-bold py-3 px-5">Add New Clients
+    <div class="text-black font-bold py-3 px-5">Add New Tasks
         <a href="{{ route('task.index') }}">
         <button class="bg-blue-600 text-white py-2 px-4 font-bold rounded-full float-right">
             Go Back
@@ -12,6 +12,10 @@
 
 <form method="POST" action="{{ route('task.store') }}">
     @csrf
+
+    @if ($errors->any())
+    {{ $errors }}
+    @endif
 
     <div>
         <label for="user_id">User</label>

@@ -36,10 +36,17 @@ class AirlineController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'title' => ['required'],
-            'type' => ['required'],
-        ]);
+        $request->validate(
+            [
+                'title' => ['required'],
+                'type' => ['required'],
+            ],
+            [
+                'title.required' => "please enter title",
+                'type.required' => "enter data",
+            ]
+
+        );
 
         airline::create([
             'title' => $request->title,
@@ -58,7 +65,7 @@ class AirlineController extends Controller
      */
     public function show(Airline $airline)
     {
-        //
+        return view('airline.show', compact('airline'));
     }
 
     /**

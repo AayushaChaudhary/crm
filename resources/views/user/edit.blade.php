@@ -13,6 +13,10 @@
 <form method="POST" action="{{ route('user.update',$user) }}">
     @csrf
     @method('put')
+
+    @if ($errors->any())
+    {{ $errors }}
+    @endif
   
 
     <!-- Name -->
@@ -86,8 +90,31 @@
 
     <div>
         <x-label for="bloodgroup" :value="__('bloodgroup')" />
-        <input type="text" name="bloodgroup" id="bloodgroup" value= "{{ $user->bloodgroup }}" class="w-full rounded-md">
+        <select name="bloodgroup" id="bloodgroup" class="block mt-1 w-full" >
+           
+            @foreach (\App\Models\User::CRUD_BLOODGROUP as $bloodgroup )
+                <option value="{{ $bloodgroup }}" @if($user->bloodgroup==$bloodgroup) selected @endif>
+                    {{ $bloodgroup }}
+                </option>
+            @endforeach
+            
+        </select>
     </div>
+
+    <div>
+        <x-label for="status" :value="__('status')" />
+        <select name="status" id="status" class="block mt-1 w-full" >
+           
+            @foreach (\App\Models\User::CRUD_STATUS as $status )
+                <option value="{{ $status }}" @if($user->status==$status) selected @endif>
+                    {{ $status }}
+                </option>
+            @endforeach
+            
+        </select>
+    </div>
+
+
 
 
 <div class="pt-3">

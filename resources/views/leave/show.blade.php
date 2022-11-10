@@ -7,8 +7,8 @@
 @section('main')
 
 <div class="w-full">
-    <div class="text-black text-2xl font-bold py-8 px-5 w-full">Client Details
-        <a href="{{ route('client.index') }}">
+    <div class="text-black text-2xl font-bold py-8 px-5 w-full">Leave Details
+        <a href="{{ route('leave.index') }}">
             <button class="bg-gray-700 text-white text-xl rounded-full hover:bg-gray-600 font-bold py-2 px-4 text-center absolute right-20">
                 <i class="fa-solid fa-arrow-left pr-2"></i>Back</button></a>
     </div>
@@ -22,49 +22,50 @@
                     ID
                 </th>
                 <td>
-                    {{ $client->id }}
+                    {{ $leave->id }}
                 </td>
             </tr>
             <tr>
                 <th scope="col" class="py-3 px-6">
-                    Name
+                    Subject
                 </th>
                 <td>
-                    {{ $client->name }}
+                    {{ $leave->subject }}
                 </td>
             </tr>
             <tr>
                 <th scope="col" class="py-3 px-6">
-                    Address
+                    Date
                 </th>
                 <td>
-                    {{ $client->address }}
+                    {{ $leave->date }}
                 </td>
             </tr>
             <tr>
                 <th scope="col" class="py-3 px-6">
-                    Email
+                    Image
                 </th>
                 <td>
-                    {{ $client->email }}
+                    <img src="/storage/{{ $leave->image}}" class="h-4">
                 </td>
             </tr>
             <tr>
                 <th scope="col" class="py-3 px-6">
-                    Phoneno
+                    Description
                 </th>
                 <td>
-                    {{ $client->phoneno }}
+                    {!! $leave->description !!}
                 </td>
             </tr>
             <tr>
                 <th scope="col" class="py-3 px-6">
-                    Assigned To
+                    Status
                 </th>
                 <td>
-                    {{ $client->user->name }}
+                    {{ $leave->status }}
                 </td>
             </tr>
+            
            
         </thead>
     </table>
